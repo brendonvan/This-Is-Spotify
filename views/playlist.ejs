@@ -2,6 +2,13 @@
 <html lang="en">
 <%- include('partials/head', {page: 'Playlist'})  %>
 <body>
-    <h1>Playlist Page</h1>
+    <div class="main">
+        <%- include('partials/top-bar') %>
+        <%- include('partials/nav-bar')  %>
+        <div class="main-view">
+            <h1>Playlist Page</h1>
+        </div>
+        <%- include('partials/now-playing-bar')  %>
+    </div>
 </body>
 </html>

@@ -1,0 +1,66 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --font-family: 'Roboto', sans-serif;
+    --main-bg-color: #121212;
+    --background-highlight: #1a1a1a;
+    --background-press: #000;
+    --text-base: #fff;
+    --text-subdued: #a7a7a7;
+  }
+  
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-bg-color);
+    display: grid;
+}
+
+ul {
+    list-style-type: none;
+}
+
+h1 {
+    font-family: var(--font-family);
+    color: var(--text-base);
+}
+
+a { 
+    color: inherit;
+    text-decoration: none; 
+} 
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: .5fr 10fr 1fr;
+    grid-template-areas: 
+    "none header header header header"
+    "navbar main main main main"
+    "footer footer footer footer footer";
+}
+
+.top-bar {
+    grid-area: header;
+}
+
+.main-view {
+    grid-area: main;
+}
+
+.nav-bar {
+    grid-area: navbar;
+    font-family: var(--font-family);
+    color: var(--text-base);
+}
+
+.now-playing-bar {
+    grid-area: footer;
+}
