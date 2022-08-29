@@ -21,5 +21,14 @@ app.use("/playlist", playlistController);
 app.use("/collection", collectionController);
 app.use("/search", searchController);
 
+// ERROR 404 PAGE
+app.get("*", (req, res) => {
+    res.render("404.ejs")
+})
+// HELP PAGE
+app.get("/help", (req, res) =>{
+    res.render("help.ejs")
+})
+
 // LISTENING
 app.listen(PORT, () => { console.log(`Server listening on PORT: ${PORT}`)});

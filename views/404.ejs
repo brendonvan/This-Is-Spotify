@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404</title>
+    <link rel="stylesheet" href="/styles/404.css" />
+</head>
+<body>
+    <div class="flex-container">
+
+    
+
+        <div class="image">
+        <img src="https://i.imgur.com/YyZfFrY.jpeg" style="width: 200px;" alt="">
+        </div>
+
+        <p>This web page does not exist...</p>
+
+        <a id="home" href="/"> Home </a>
+
+        <button onclick="history.back()">Return</button>
+
+
+        <button class="open-button" onclick="openForm()">Help</button>
+        
+
+        <%- include('partials/now-playing-bar')  %>
+
+    </div>
+    <div class="form-popup" id="myForm">
+        <form action="/action_page.php" class="form-container">
+          <h1>Sumbit</h1>
+      
+          <label for="email"><b>Email</b></label>
+          <input type="text" placeholder="Enter Email" name="email" required>
+      
+          <label for="issue"><b>Issue</b></label>
+          <input type="text" placeholder="What's your issue?" name="psw" required>
+      
+          <button type="submit" class="btn">Sumbit</button>
+          <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+      </div>
+      
+      <script>
+      function openForm() {
+        document.getElementById("myForm").style.display = "block";
+      }
+      
+      function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+      }
+      </script>
+
+</body>
+</html>
