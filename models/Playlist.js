@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
 const playlistSchema = new mongoose.Schema({
+
+    playlistname: {
+        type: String,
+        required: [true, "name of playlist cannot be empty"]
+    },
     title: {
         type: String,
         required: [true, "name cannot be empty"]
@@ -12,6 +17,10 @@ const playlistSchema = new mongoose.Schema({
     date: {
         type: String,
         required: [true, "date added cannot be empty"]
+    },
+    duration: {
+        type: String,
+        required: [true, "duration of song cannot be empty"]
     }
 },
 {

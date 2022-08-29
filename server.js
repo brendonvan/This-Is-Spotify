@@ -4,10 +4,7 @@ const app = express();
 const PORT = 8080;
 
 // IMPORT
-const homeController = require("./controllers/home_controller");
-const playlistController = require("./controllers/playlist_controller");
-const collectionController = require("./controllers/collection_controller");
-const searchController = require("./controllers/search_controller");
+const controller = require("./controllers");
 const methodOverride = require("method-override");
 
 // MIDDLEWARE
@@ -16,10 +13,10 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 
 // CONTROLLERS
-app.use("", homeController);
-app.use("/playlist", playlistController);
-app.use("/collection", collectionController);
-app.use("/search", searchController);
+app.use("", controller.home);
+app.use("/playlist", controller.playlist);
+app.use("/collection", controller.collection);
+app.use("/search", controller.search);
 
 // ERROR 404 PAGE
 app.get("*", (req, res) => {
