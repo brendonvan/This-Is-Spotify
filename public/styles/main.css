@@ -23,13 +23,13 @@ body {
     display: grid;
 }
 
-ul {
-    list-style-type: none;
-}
-
-h1 {
+h1, h2, h3, h4, h5, h6, p {
     font-family: var(--font-family);
     color: var(--text-base);
+}
+
+ul {
+    list-style-type: none;
 }
 
 a { 
@@ -39,16 +39,32 @@ a {
 
 .main {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: .5fr 1fr 1fr 1fr 1fr;
     grid-template-rows: .5fr 10fr 1fr;
     grid-template-areas: 
-    "none header header header header"
+    "navbar header header header header"
     "navbar main main main main"
     "footer footer footer footer footer";
 }
 
+.logo {
+    width: 200px;
+    height: 50px;
+    margin: 10px 20px 10px 40px;
+}
+
+.logo-container {
+    display: flex;
+    font-family: var(--font-family);
+    color: var(--text-base);
+    font-size: 1.5em;
+    align-items: center;
+    justify-content: left;
+}
+
 .top-bar {
     grid-area: header;
+    background: grey;
 }
 
 .main-view {
@@ -57,10 +73,9 @@ a {
 
 .nav-bar {
     grid-area: navbar;
-    font-family: var(--font-family);
-    color: var(--text-base);
 }
 
 .now-playing-bar {
     grid-area: footer;
+    background-color: grey;
 }
