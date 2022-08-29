@@ -39,7 +39,7 @@ a {
 
 .main {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: .5fr 1fr 1fr 1fr 1fr;
     grid-template-rows: .5fr 10fr 1fr;
     grid-template-areas: 
     "navbar header header header header"
@@ -64,6 +64,7 @@ a {
 
 .top-bar {
     grid-area: header;
+    background: grey;
 }
 
 .main-view {
@@ -76,4 +77,5 @@ a {
 
 .now-playing-bar {
     grid-area: footer;
+    background-color: grey;
 }
