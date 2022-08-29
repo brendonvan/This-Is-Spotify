@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 
 // MIDDLEWARE
 router.use(express.json());
-router.use(express.urlencoded({ extended: true }));
+router.use(express.urlencoded({ extended: false }));
 
 // ROUTERS
 
@@ -21,7 +21,7 @@ router.get("/new", (req, res) => {
 router.get("/", async (req, res, next) => {
     try {
         console.log("finding playlist")
-        const playlist = await db.Playlist.find({});
+        const playlist = await db.Playlist.find({}); //figure this line out
         console.log("found playlist")
         const context = {playlist: playlist};
         res.render("playlist.ejs", context);

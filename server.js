@@ -2,6 +2,7 @@
 const express = require("express");
 const app = express();
 const PORT = 8080;
+require("./config/db.connection");
 
 // IMPORT
 const controller = require("./controllers");
