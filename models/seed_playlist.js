@@ -1,4 +1,4 @@
-const playlist = [
+module.exports = [
     {
         name_of_playlist: "late night",
         tracks: "Argentina by Gunna",
@@ -15,5 +15,3 @@ const playlist = [
         isAlbum: true
     }
 ];
-
-module.exports = playlist;
