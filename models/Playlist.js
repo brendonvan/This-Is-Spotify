@@ -55,7 +55,7 @@ const playlistSchema = new mongoose.Schema({
 },
 {
     timestamps: true
-})
+});
 
 const Playlist = mongoose.model("Playlist", playlistSchema);
 
