@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
     const context = {
         // INSERT HERE
     }
-    res.render("home.ejs", context)
+    res.render("search.ejs", context)
 })
 
 module.exports = router;

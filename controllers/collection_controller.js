@@ -12,35 +12,35 @@ router.get("/", (req, res) => {
     const context = {
         // INSERT HERE
     }
-    res.render("home.ejs", context)
+    res.render("collection.ejs", context)
 })
 
 router.get("/playlist", (req, res) => {
     const context = {
         // INSERT HERE
     }
-    res.render("home.ejs", context)
+    res.render("collection.ejs", context)
 })
 
 router.get("/podcast", (req, res) => {
     const context = {
         // INSERT HERE
     }
-    res.render("home.ejs", context)
+    res.render("collection.ejs", context)
 })
 
 router.get("/artist", (req, res) => {
     const context = {
         // INSERT HERE
     }
-    res.render("home.ejs", context)
+    res.render("collection.ejs", context)
 })
 
 router.get("/album", (req, res) => {
     const context = {
         // INSERT HERE
     }
-    res.render("home.ejs", context)
+    res.render("collection.ejs", context)
 })
 
 module.exports = router;
