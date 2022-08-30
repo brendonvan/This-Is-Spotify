@@ -49,7 +49,8 @@ const playlistSchema = new mongoose.Schema({
         type: String
     },
     isAlbum: {
-        type: Boolean
+        type: Boolean,
+        required: [true, "isAlbum cannot be empty"]
     }
 },
 {
