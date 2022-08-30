@@ -7,7 +7,6 @@ const tracksSchema = new mongoose.Schema({
     },
     album: {
         type: String,
-        required: [true, "album cannot be empty"]
     },
     artists: {
         type: String,
@@ -19,7 +18,6 @@ const tracksSchema = new mongoose.Schema({
     },
     number_of_times_played: {
         type: Number,
-        required: [true, "number of times played cannot be empty"]
     },
     duration: {
         type: String,

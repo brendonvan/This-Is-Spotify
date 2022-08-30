@@ -12,7 +12,6 @@ const playlistSchema = new mongoose.Schema({
     },
     album: {
         type: String,
-        required: [true, "album cannot be empty"]
     },
     image: {
         type: String,
@@ -24,7 +23,6 @@ const playlistSchema = new mongoose.Schema({
     },
     duration_of_entire_playlist: {
         type: String,
-        required: [true, "duration of song cannot be empty"]
     },
     number_of_tracks: {
         type: Number,
