@@ -3,7 +3,7 @@ const playlist = [
         name_of_playlist: "late night",
         tracks: "Argentina by Gunna",
         album: "WUNNA",
-        image: "https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+        image: "https://picsum.photos/200/300",
         created_date: "5/6/2022",
         duration_of_entire_playlist: "2:29",
         number_of_tracks: 49,
