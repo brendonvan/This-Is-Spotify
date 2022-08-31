@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../models");
 const mongoose = require("mongoose");
-// mongoose.Schema.Types.ObjectId.isValid("630f66dd90c1310ef0480e0d");
+require("../config/db.connection");
 
 // MIDDLEWARE
 router.use(express.json());
@@ -21,10 +21,8 @@ router.get("/new", (req, res) => {
 // GET request for all playlists in our playlist DB
 router.get("/", async (req, res, next) => {
     try {
-        console.log("finding playlist")
-        const playlist = await db.Playlist.find(); //figure this line out
-        console.log("found playlist")
-        const context = {playlist: playlist};
+        const playlist = await db.Playlist.find();
+        const context = {playlistlist: playlist};
         res.render("playlist.ejs", context);
 
     } catch (error) {
@@ -40,7 +38,7 @@ router.get("/:id", async (req, res, next) => {
     try {
         const onePlaylist = await db.Playlist.findById(req.params.id);
         console.log(onePlaylist);
-        const context = {onePlaylist: onePlaylist};
+        const context = {playlist: onePlaylist};
         res.render("playlist.ejs", context);
 
     } catch (error) {
@@ -104,8 +102,8 @@ router.get("/:id/edit", async (req, res, next) => {
     try {
         const editedPlaylist = await db.Playlist.findById(req.params.id);
         console.log(editedPlaylist);
-        const context = {editedPlaylist: editedPlaylist};
-        res.render("edit.ejs", context);
+        const context = {playlist: editedPlaylist};
+        res.render("playlist.ejs", context);
 
     } catch (error) {
         console.log(error);
@@ -113,7 +111,6 @@ router.get("/:id/edit", async (req, res, next) => {
         return next();
     }
 });
-
 
 
 module.exports = router;
