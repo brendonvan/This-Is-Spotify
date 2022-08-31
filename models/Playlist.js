@@ -14,6 +14,10 @@ const playlistSchema = new mongoose.Schema({
     album: {
         type: String,
     },
+    // _id: {
+    //     type: String,
+    //     required: true
+    // },
     image: {
         type: String,
         required: [true, "playlist image cannot be empty"]
@@ -50,7 +54,10 @@ const playlistSchema = new mongoose.Schema({
     isAlbum: {
         type: Boolean,
         required: [true, "isAlbum cannot be empty"]
-    }
+    },
+    _id: {
+        type: Object
+    },
 },
 {
     timestamps: true

@@ -3,10 +3,11 @@ const express = require("express");
 const router = express.Router();
 const db = require("../models");
 const mongoose = require("mongoose");
+// mongoose.Schema.Types.ObjectId.isValid("630f66dd90c1310ef0480e0d");
 
 // MIDDLEWARE
 router.use(express.json());
-router.use(express.urlencoded({ extended: false }));
+router.use(express.urlencoded({ extended: true }));
 
 // ROUTERS
 
@@ -19,9 +20,10 @@ router.get("/new", (req, res) => {
 // INDEX ROUTE
 // GET request for all playlists in our playlist DB
 router.get("/", async (req, res, next) => {
+    // if (!mongoose.Schema.Types.ObjectId.isValid(id)) return false;
     try {
         console.log("finding playlist")
-        const playlist = await db.Playlist.find({}); //figure this line out
+        const playlist = await db.Playlist.find(); //figure this line out
         console.log("found playlist")
         const context = {playlist: playlist};
         res.render("playlist.ejs", context);
