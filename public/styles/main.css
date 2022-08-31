@@ -44,7 +44,7 @@ a {
 .main {
     display: grid;
     grid-template-columns: .5fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: .5fr 10fr 1fr;
+    grid-template-rows: .8fr 10fr 1fr;
     grid-template-areas: 
     "navbar header header header header"
     "navbar main main main main"
@@ -69,17 +69,19 @@ a {
 
 .top-bar {
     grid-area: header;
-    background-color: var(--main-bg-color);
+    background-color: var(--background-press);
     display: flex;
     align-items: center;
     z-index: 0;
+    margin-top: -0.5em;
+    padding-left: .5em;
 }
 
 /* SEARCH BAR */
 .search-bar-container {
     position: absolute;
     margin-left: 4.8em;
-    margin-top: .5em;
+    
 }
 
 .search-bar-container > a {
@@ -96,12 +98,13 @@ a {
     text-indent: 4em;
     margin-left: 5em;
     border: none;
+    letter-spacing: 0.05em;
     transition: .5s;
 }
 
 .search-bar::placeholder {
     font-size: 1em;
-    letter-spacing: .05em;
+    letter-spacing: 0.05em;
     color: transparent;
     transition: .5s;
 }
@@ -149,6 +152,9 @@ a {
 .main-view {
     grid-area: main;
     z-index: 0;
+    background-color: var(--background-highlight);
+    background-color: orange;
+    
 }
 
 .item-container {
@@ -156,21 +162,20 @@ a {
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
     flex-flow: column;
     background-color: var(--background-highlight);
     border-radius: 1em;
 }
 
 .item-container > img {
-    width: 12.5em;
-    height: 12.5em;
+    width: 9em;
+    height: 9em;
     border-radius: 1em;
-    margin: 0;
+    margin-top: 1em;
 }
 
 .item-content {
-    width: 12.5em;
+    width: 9em;
     line-height: 1.2em;
     overflow: hidden;
 }
@@ -185,6 +190,53 @@ a {
     color: var(--text-subdued);
     font-size: .9em;
     letter-spacing: .03em;
+}
+
+.track-container {
+    width: 100vw;
+    height: 100vh;
+    
+
+}
+
+.track-info-container {
+    width: 100vw;
+    height: 40vh;
+    display: flex;
+    padding: 2em;
+}
+
+.track-info-container > img{
+    width: 15em;
+    height: 15em;
+    box-shadow: .5em .5em 1.7em black;
+    border-radius: 1em;
+}
+
+.track-info-content {
+    margin-left: 2em;
+    
+}
+
+.track-info-content > p {
+    font-size: 0.8em;
+    line-height: 1em;
+    padding: 0;
+    
+}
+
+.track-info-content > h1 {
+    font-size: 5em;
+    line-height: 1em;
+    padding: 0;
+    margin: 0;
+}
+
+.track-content {
+    width: 100vw;
+    height: 70vh;
+    background-color: rgba(22, 22, 22, 50%);
+    background: linear-gradient(to top, var(--background-highlight) 25%, rgba(22, 22, 22, 20%) 100%);
 }
 
 /* NAVIGATION BAR */
