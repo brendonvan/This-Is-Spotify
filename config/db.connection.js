@@ -26,10 +26,10 @@ const db = require("../models/");
 const seedData = require("../models/seed_data/");
 
 // NEEDED FOR SEED DATA POPULATING
-db.Playlist.insertMany(seedData.seed_playlist, (err, db) => {
-    if (err) {
-        console.log(err)
-    }
-      console.log("added models data", db)
-      mongoose.connection.close();
-});
+// db.Playlist.insertMany(seedData.seed_playlist, (err, db) => {
+//     if (err) {
+//         console.log(err)
+//     }
+//       console.log("added models data", db)
+//       mongoose.connection.close();
+// });

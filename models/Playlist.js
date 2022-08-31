@@ -14,10 +14,6 @@ const playlistSchema = new mongoose.Schema({
     album: {
         type: String,
     },
-    // _id: {
-    //     type: String,
-    //     required: true
-    // },
     image: {
         type: String,
         required: [true, "playlist image cannot be empty"]

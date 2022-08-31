@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
-// ROUTERS
+// ROUTES
 
 // NEW ROUTE
 // GET request for new playlist(s)
@@ -20,7 +20,6 @@ router.get("/new", (req, res) => {
 // INDEX ROUTE
 // GET request for all playlists in our playlist DB
 router.get("/", async (req, res, next) => {
-    // if (!mongoose.Schema.Types.ObjectId.isValid(id)) return false;
     try {
         console.log("finding playlist")
         const playlist = await db.Playlist.find(); //figure this line out
@@ -65,6 +64,56 @@ router.post("/", async (req, res, next) => {
         return next ();
     }
 });
+
+// DESTROY ROUTE
+// DELETE request for removing one playlist from playlist DB
+
+router.delete("/:id", async (req, res, next) => {
+    try {
+        const deletedPlaylist = await db.Playlist.findByIdAndDelete(req.params.id);
+        console.log(deletedPlaylist);
+        return res.redirect("/playlist");
+
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+});
+
+// UPDATE ROUTE
+// PUT request for playlist updates
+
+router.put("/:id", async (req, res, next) => {
+    try {
+        const updatedPlaylist = await db.Playlist.findByIdAndUpdate(req.params.id, req.body);
+        console.log(updatedPlaylist);
+        res.redirect("/playlist");
+
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+});
+
+// EDIT ROUTE
+// GET request for editing playlist template
+
+router.get("/:id/edit", async (req, res, next) => {
+    try {
+        const editedPlaylist = await db.Playlist.findById(req.params.id);
+        console.log(editedPlaylist);
+        const context = {editedPlaylist: editedPlaylist};
+        res.render("edit.ejs", context);
+
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+});
+
 
 
 module.exports = router;
