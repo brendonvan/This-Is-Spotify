@@ -27,13 +27,6 @@ router.use(express.urlencoded({ extended: true }));
 // GET request for new tracks(s)
 router.get("/create/:id", async (req, res, next) => {
     try {
-        
-        // once we get ID
-        // find ID in API
-        // getAuth
-        // use API info to post into MONGODB
-        // redirect to /track/:id
-
         const access_token = await getAuth();
         await spotifyApi.setAccessToken(access_token);
         console.log(req.params.id);
@@ -43,18 +36,19 @@ router.get("/create/:id", async (req, res, next) => {
         track.body.artists.forEach((artist) => {
             artistsList.push(artist.name);
         })
+        let duration = millisToMinutesAndSeconds(track.body.duration_ms);
         let newTrack = {
             title: track.body.name,
             album: track.body.album.name,
             artists: artistsList,
             image: track.body.album.images[1].url,
-            duration: track.body.duration_ms,
+            duration: duration,
             tracks_id: track.body.id
         }
 
         await db.Tracks.create(newTrack);
         res.redirect(`/track/${req.params.id}`);
-        
+
     } catch (error) {
         console.log(error);
         req.error = error;
@@ -81,9 +75,18 @@ router.get("/", async (req, res, next) => {
 // GET request for one playlist
 router.get("/:id", async (req, res, next) => {
     try {
-        const onePlaylist = await db.Playlist.findById(req.params.id);
-        const context = {playlist: onePlaylist};
+        const track = await db.Tracks.findOne({tracks_id: req.params.id});
+        console.log(track);
+        const context = {track: track};
         res.render("track.ejs", context);
+
+        // create add button to playlist
+        // will show all playlist user owns 
+
+
+
+
+
 
     } catch (error) {
         console.log(error);
@@ -223,5 +226,10 @@ async function searchList(search) {
     }
 }
 
+function millisToMinutesAndSeconds(millis) {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+  }
 
 module.exports = router;

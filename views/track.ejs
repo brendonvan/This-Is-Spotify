@@ -7,10 +7,10 @@
         <%- include('partials/nav-bar')  %>
         <div class="main-view">
             <div class="track-info-container">
-                <img src="https://picsum.photos/200/300" alt="#">
+                <img src=<%= track.image %> alt="#">
                 <p>SONG</p>
-                <h1>GTA</h1>
-                <p>Rarin 2020 2:04</p>
+                <h1><%= track.title %></h1>
+                <p><%= track.artists[0] %> <%= track.duration %></p>
             </div>
         </div>
         <%- include('partials/now-playing-bar')  %>
