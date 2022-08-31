@@ -6,10 +6,11 @@ const playlistSchema = new mongoose.Schema({
         type: String,
         required: [true, "name of playlist cannot be empty"]
     },
-    tracks: {
-        type: [{String}], // fix this object later
-        required: [true, "name cannot be empty"]
-    },
+    tracks: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Tracks",
+        required: [true, "name cannot be empty"],
+    }],
     album: {
         type: String,
     },
@@ -49,7 +50,10 @@ const playlistSchema = new mongoose.Schema({
     isAlbum: {
         type: Boolean,
         required: [true, "isAlbum cannot be empty"]
-    }
+    },
+    _id: {
+        type: Object
+    },
 },
 {
     timestamps: true

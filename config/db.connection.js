@@ -22,14 +22,14 @@ mongoose.connection.on('error', (error) => {
 
 mongoose.connection.on('disconnected', () => console.log('MongoDB disconnected  ⚡️ 🔌 ⚡️'));
 
-const Playlist = require("../models/Playlist");
-const seedData = require("../models/seed_playlist");
+const db = require("../models/");
+const seedData = require("../models/seed_data/");
 
 // NEEDED FOR SEED DATA POPULATING
-// Playlist.insertMany(seedData, (err, playlist) => {
+// db.Playlist.insertMany(seedData.seed_playlist, (err, db) => {
 //     if (err) {
 //         console.log(err)
 //     }
-//       console.log("added playlist data", playlist)
+//       console.log("added models data", db)
 //       mongoose.connection.close();
 // });
