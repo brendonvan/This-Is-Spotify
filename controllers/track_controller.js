@@ -30,12 +30,15 @@ router.get("/create/:id", async (req, res, next) => {
         const access_token = await getAuth();
         await spotifyApi.setAccessToken(access_token);
         console.log(req.params.id);
+
         let track = await spotifyApi.getTrack(req.params.id);
         // console.log("Track Name: " + track)
         let artistsList = [];
+
         track.body.artists.forEach((artist) => {
             artistsList.push(artist.name);
         })
+
         let duration = millisToMinutesAndSeconds(track.body.duration_ms);
         let newTrack = {
             title: track.body.name,
@@ -46,8 +49,14 @@ router.get("/create/:id", async (req, res, next) => {
             tracks_id: track.body.id,
             release_date: track.body.album.release_date
         }
+        db.Tracks.find( {$and: [ {tracks_id: req.params.id}, {track_id: { $exists: false }} ]}, (err, track) => {
+            console.log(track)
+        });
 
+        // If track does not exist in our database run vvvv
         await db.Tracks.create(newTrack);
+
+        
         res.redirect(`/track/${req.params.id}`);
 
     } catch (error) {
@@ -84,10 +93,6 @@ router.get("/:id", async (req, res, next) => {
         // create add button to playlist
         // will show all playlist user owns 
         
-
-
-
-
 
     } catch (error) {
         console.log(error);
