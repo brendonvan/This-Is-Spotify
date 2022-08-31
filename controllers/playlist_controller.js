@@ -37,7 +37,7 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
     try {
         const onePlaylist = await db.Playlist.findById(req.params.id);
-        console.log(onePlaylist);
+        console.log("Here " + onePlaylist);
         const context = {playlist: onePlaylist};
         res.render("playlist.ejs", context);
 
@@ -98,19 +98,19 @@ router.put("/:id", async (req, res, next) => {
 // EDIT ROUTE
 // GET request for editing playlist template
 
-router.get("/:id/edit", async (req, res, next) => {
-    try {
-        const editedPlaylist = await db.Playlist.findById(req.params.id);
-        console.log(editedPlaylist);
-        const context = {playlist: editedPlaylist};
-        res.render("playlist.ejs", context);
+// router.get("/:id/edit", async (req, res, next) => {
+//     try {
+//         const editedPlaylist = await db.Playlist.findById(req.params.id);
+//         console.log(editedPlaylist);
+//         const context = {playlist: editedPlaylist};
+//         res.render("playlist.ejs", context);
 
-    } catch (error) {
-        console.log(error);
-        req.error = error;
-        return next();
-    }
-});
+//     } catch (error) {
+//         console.log(error);
+//         req.error = error;
+//         return next();
+//     }
+// });
 
 
 module.exports = router;

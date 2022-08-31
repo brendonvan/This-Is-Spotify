@@ -26,6 +26,7 @@ app.use(methodOverride("_method"));
 
 // CONTROLLERS
 app.use("", controller.home);
+app.use("/track", controller.track);
 app.use("/playlist", controller.playlist);
 app.use("/collection", controller.collection);
 app.use("/search", controller.search);

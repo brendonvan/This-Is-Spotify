@@ -202,7 +202,7 @@ a {
     grid-area: footer;
     background-color: var(--now-playing-background);
     z-index: 0;
-    margin-top: -14em;
+    /* margin-top: -14em; */
     backdrop-filter: blur(2em);
 }
 
