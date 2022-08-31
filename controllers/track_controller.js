@@ -43,7 +43,8 @@ router.get("/create/:id", async (req, res, next) => {
             artists: artistsList,
             image: track.body.album.images[1].url,
             duration: duration,
-            tracks_id: track.body.id
+            tracks_id: track.body.id,
+            release_date: track.body.album.release_date
         }
 
         await db.Tracks.create(newTrack);
@@ -82,7 +83,7 @@ router.get("/:id", async (req, res, next) => {
 
         // create add button to playlist
         // will show all playlist user owns 
-
+        
 
 
 

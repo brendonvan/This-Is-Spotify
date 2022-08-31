@@ -29,6 +29,9 @@ const tracksSchema = new mongoose.Schema({
     },
     playlist_ids: {
         type: String
+    },
+    release_date: {
+        type: String
     }
 },
 {
