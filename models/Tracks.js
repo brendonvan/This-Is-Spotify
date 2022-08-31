@@ -9,7 +9,7 @@ const tracksSchema = new mongoose.Schema({
         type: String,
     },
     artists: {
-        type: String,
+        type: [String],
         required: [true, "artists cannot be empty"]
     },
     image: {
@@ -28,8 +28,7 @@ const tracksSchema = new mongoose.Schema({
         required: [true, "tracks id cannot be empty"]
     },
     playlist_ids: {
-        type: String,
-        required: [true, "playlist ids cannot be empty"]
+        type: String
     }
 },
 {

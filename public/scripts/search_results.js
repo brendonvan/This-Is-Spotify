@@ -30,13 +30,13 @@ searchInput.addEventListener('keyup', async (e) => {
 function renderResults(results) {
     console.log(results);
     let content = results.map((item, i) => {
-        // console.log("Items: " + item.album[0]);
+        console.log("Items: " + item);
         return `
-            <a href="#">
+            <a href="/track/create/${item.id}">
                 <div class="item-container">
                     <img src="${item.album.images[1].url}" alt="This-is-Grogu">
                     <div class="item-content">
-                        <h2>${item.album.name}</h2>
+                        <h2>${item.name}</h2>
                         <p>By ${item.artists[0].name}</p>
                     </div>
                 </div>
