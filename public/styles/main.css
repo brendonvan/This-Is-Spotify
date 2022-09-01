@@ -152,9 +152,13 @@ a {
 .main-view {
     grid-area: main;
     z-index: 0;
-    background-color: var(--background-highlight);
-    background-color: orange;
+    background-color: var(--background-press);
+    /* background-color: orange; */
     
+}
+
+.main-container {
+    margin: 2em;
 }
 
 .item-container {
@@ -164,14 +168,14 @@ a {
     align-items: center;
     flex-flow: column;
     background-color: var(--background-highlight);
-    border-radius: 1em;
+    border-radius: 0.5em;
 }
 
 .item-container > img {
     width: 9em;
     height: 9em;
-    border-radius: 1em;
-    margin-top: 1em;
+    border-radius: 0.5em;
+    margin-top: 1.8em;
 }
 
 .item-content {
@@ -195,13 +199,12 @@ a {
 .track-container {
     width: 100vw;
     height: 100vh;
-    
-
+    background: linear-gradient(to top, var(--background-highlight) 25%, rgba(22, 22, 22, 10%) 100%);
 }
 
 .track-info-container {
     width: 100vw;
-    height: 40vh;
+    height: 35vh;
     display: flex;
     padding: 2em;
 }
@@ -209,8 +212,8 @@ a {
 .track-info-container > img{
     width: 15em;
     height: 15em;
-    box-shadow: .5em .5em 1.7em black;
-    border-radius: 1em;
+    box-shadow: .5em .5em 1em rgba(22, 22, 22, 50%);
+    border-radius: 0.5em;
 }
 
 .track-info-content {
@@ -236,7 +239,24 @@ a {
     width: 100vw;
     height: 70vh;
     background-color: rgba(22, 22, 22, 50%);
-    background: linear-gradient(to top, var(--background-highlight) 25%, rgba(22, 22, 22, 20%) 100%);
+    background: linear-gradient(to top, var(--background-highlight) 25%, rgba(22, 22, 22, 10%) 100%);
+}
+
+.track-options {
+    margin: 2em;
+    padding-top: 3em;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    
+}
+
+.track-options > img {
+    margin: 1em;
+}
+
+.track-add {
+    margin-left: -.5em;
 }
 
 /* NAVIGATION BAR */
@@ -260,9 +280,9 @@ a {
 
 /* GRID CONTAINER */
 .grid-container {
-    width: 95.4%;
+    width: 100vw;
     height: 100vh;
-    margin: 2em;
+    padding: 2em;
     padding-bottom: 12em;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
