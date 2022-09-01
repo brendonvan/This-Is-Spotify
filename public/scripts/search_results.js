@@ -7,6 +7,16 @@ const searchButton = document.getElementById("search-button")
 
 const searchable = [];
 
+
+searchInput.addEventListener('keypress', async (e) => {
+    if (event.key === "Enter") {
+        let input = searchInput.value
+        console.log(input);
+        window.location.href = "http://localhost:8080/search/";    
+    }
+    
+})
+
 searchInput.addEventListener('keyup', async (e) => {
     // console.log(searchInput.value);
     let input = searchInput.value
@@ -24,11 +34,11 @@ searchInput.addEventListener('keyup', async (e) => {
         const response = await fetch(`http://localhost:8080/search/input?search=${input}`, { method: "GET" });
         const data = await response.json();
         renderResults(data.list);
-    }, 1000)
+    }, 500)
 }) 
 
 function renderResults(results) {
-    console.log(results);
+    // console.log(results);
     let content = results.map((item, i) => {
         console.log("Items: " + item);
         return `
@@ -44,6 +54,7 @@ function renderResults(results) {
         `;
     })
     .join("");
+    
     resultWrapper.innerHTML = `${content}`;
 }
 

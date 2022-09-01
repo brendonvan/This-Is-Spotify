@@ -40,8 +40,7 @@ const playlistSchema = new mongoose.Schema({
         required: [true, "track ids cannot be empty"]
     },
     user_id: {
-        type: String,
-        required: [true, "user id cannot be empty"]
+        type: String
     },
     description: {
         type: String
