@@ -172,14 +172,14 @@ a {
 }
 
 .item-container > img {
-    width: 9em;
-    height: 9em;
+    width: 11em;
+    height: 11em;
     border-radius: 0.5em;
-    margin-top: 1.8em;
+    margin-top: 1.3em;
 }
 
 .item-content {
-    width: 9em;
+    width: 11em;
     line-height: 1.2em;
     overflow: hidden;
 }
@@ -324,6 +324,22 @@ a {
 
 .nav-bar-container {
     margin-left: -1em;
+    
+}
+
+.nav-list {
+    margin-top: 3em;
+}
+
+.nav-desc {
+    font-size: 1em;
+    
+    color: var(--text-base);
+}
+
+.nav-item {
+    font-size: .8em;
+    color: var(--text-subdued);
 }
 
 /* NOW PLAYING BAR */
@@ -331,7 +347,8 @@ a {
     grid-area: footer;
     background-color: var(--now-playing-background);
     z-index: 0;
-    /* margin-top: -14em; */
+    margin-top: -9em;
+    margin-left: -1em;
     backdrop-filter: blur(2em);
 }
 

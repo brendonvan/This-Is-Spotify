@@ -25,7 +25,7 @@ router.use(express.urlencoded({ extended: true }));
 router.get("/", (req, res, next) => {
     try {
         const context = {
-            // INSERT HERE
+            pageName: "Home"
         }
         res.render("collection.ejs", context)
     } catch (error) {
@@ -38,7 +38,7 @@ router.get("/", (req, res, next) => {
 router.get("/albums", (req, res, next) => {
     try {
         const context = {
-            // INSERT HERE
+            pageName: "Albums"
         }
         res.render("collection.ejs", context)
     } catch (error) {
@@ -51,7 +51,7 @@ router.get("/albums", (req, res, next) => {
 router.get("/tracks", (req, res, next) => {
     try {
         const context = {
-            // INSERT HERE
+            pageName: "Tracks"
         }
         res.render("collection.ejs", context)
     } catch (error) {
@@ -64,7 +64,7 @@ router.get("/tracks", (req, res, next) => {
 router.get("/genres", (req, res, next) => {
     try {
         const context = {
-            // INSERT HERE
+            pageName: "Genres"
         }
         res.render("collection.ejs", context)
     } catch (error) {
@@ -77,7 +77,7 @@ router.get("/genres", (req, res, next) => {
 router.get("/playlists", (req, res, next) => {
     try {
         const context = {
-            // INSERT HERE
+            pageName: "Playlists"
         }
         res.render("collection.ejs", context)
     } catch (error) {
@@ -90,9 +90,9 @@ router.get("/playlists", (req, res, next) => {
 router.get("/liked", (req, res, next) => {
     try {
         const context = {
-            // INSERT HERE
+            pageName: "Liked"
         }
-        res.render("collection.ejs", context)
+        res.render("playlist.ejs", context)
     } catch (error) {
         console.log(error)
         req.error = error;
