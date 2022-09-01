@@ -10,7 +10,7 @@ const playlist = [
         number_of_users_following: 0,
         playlist_id: "1mv12JvDfW1FXlyWe8QqHT",
         track_ids: "54NBD72JXFXzrodbQBSzWh",
-        user_id: "30ook1xhcuxfyogwi80u3gta9",
+        // user_id: "30ook1xhcuxfyogwi80u3gta9",
         description: "optional",
         isAlbum: true
     }
