@@ -200,6 +200,7 @@ a {
     width: 100vw;
     height: 100vh;
     background: linear-gradient(to top, var(--background-highlight) 25%, rgba(22, 22, 22, 10%) 100%);
+    overflow-y: scroll;
 }
 
 .track-info-container {
@@ -240,6 +241,7 @@ a {
     height: 70vh;
     background-color: rgba(22, 22, 22, 50%);
     background: linear-gradient(to top, var(--background-highlight) 25%, rgba(22, 22, 22, 10%) 100%);
+    
 }
 
 .track-options {
@@ -257,6 +259,61 @@ a {
 
 .track-add {
     margin-left: -.5em;
+}
+
+.playlist-tracks {
+    width: 84%;
+    background-color: transparent;
+    display: grid;
+    row-gap: .3em;
+    
+}
+
+.playlist-header {
+    width: 70%;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-subdued);
+    font-size: 0.6em;
+    font-weight: 200;
+    letter-spacing: .2em;
+    border-bottom: 1px solid rgba(180, 180, 180, 30%);
+    margin-left: 7em;
+    padding-left: 3em;
+    padding-right: 3em;
+    margin-bottom: 1em;
+}
+
+.playlist-item {
+    width: 83.8%;
+    margin-left: 6.6em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-subdued);
+    font-size: 0.6em;
+    font-weight: 200;
+    letter-spacing: .2em;
+    padding-left: 3em;
+    padding-right: 3em;
+}
+
+.playlist-item-info {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.playlist-item-content {
+    margin-left: 1em;
+    line-height: .3em;
+}
+
+.playlist-item-title {
+    font-size: 1.1em;
+    font-weight: 300;
 }
 
 /* NAVIGATION BAR */
