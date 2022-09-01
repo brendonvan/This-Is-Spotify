@@ -1,7 +1,7 @@
-const playlist = [
+module.exports = [
     {
         name_of_playlist: "late night",
-        tracks: [{_id: {"$oid":"630f66dd90c1310ef0480e0d"}}],
+        tracks: [{_id: "630f66dd90c1310ef0480e0d"}],
         album: "WUNNA",
         image: "https://picsum.photos/200/300",
         created_date: "5/6/2022",
@@ -10,10 +10,8 @@ const playlist = [
         number_of_users_following: 0,
         playlist_id: "1mv12JvDfW1FXlyWe8QqHT",
         track_ids: "54NBD72JXFXzrodbQBSzWh",
-        // user_id: "30ook1xhcuxfyogwi80u3gta9",
+        user_id: "30ook1xhcuxfyogwi80u3gta9",
         description: "optional",
-        isAlbum: false
+        isAlbum: true
     }
 ];
-
-module.exports = playlist;

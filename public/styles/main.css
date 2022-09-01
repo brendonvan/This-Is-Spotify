@@ -11,10 +11,13 @@
     --text-subdued: #a7a7a7;
     --text-color: rgb(101 212 110)
   }
+    --now-playing-background: rgba(40, 40, 40, 50%)
+}
   
 html {
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 body {
@@ -38,16 +41,18 @@ a {
     text-decoration: none; 
 } 
 
+/* GRID TEMPLATE */
 .main {
     display: grid;
     grid-template-columns: .5fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: .5fr 10fr 1fr;
+    grid-template-rows: .8fr 10fr 1fr;
     grid-template-areas: 
     "navbar header header header header"
     "navbar main main main main"
     "footer footer footer footer footer";
 }
 
+/* TOP BAR */
 .logo {
     width: 200px;
     height: 50px;
@@ -65,19 +70,299 @@ a {
 
 .top-bar {
     grid-area: header;
-    background: grey;
+    background-color: var(--background-press);
+    display: flex;
+    align-items: center;
+    z-index: 0;
+    margin-top: -0.5em;
+    padding-left: .5em;
 }
 
+/* SEARCH BAR */
+.search-bar-container {
+    position: absolute;
+    margin-left: 4.8em;
+    
+}
+
+.search-bar-container > a {
+    position: absolute;
+    margin-left: 4.8em;
+    margin-top: .4em;
+}
+
+.search-bar {
+    width: 4em;
+    height: 3em;
+    background-color: transparent;
+    border-radius: 1.5em;
+    text-indent: 4em;
+    margin-left: 5em;
+    border: none;
+    letter-spacing: 0.05em;
+    transition: .5s;
+}
+
+.search-bar::placeholder {
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    color: transparent;
+    transition: .5s;
+}
+
+.search-bar:focus {
+    width: 30em;
+    outline: none;
+    background-color: var(--text-base);
+}
+
+.search-bar::placeholder {
+    font-size: 1em;
+    letter-spacing: .05em;
+    color: var(--text-subdued);
+    transition: .5s;
+}
+
+.search-bar:hover {
+    width: 30em;
+    height: 3em;
+    background-color: var(--text-base);
+    border-radius: 1.5em;
+    text-indent: 4em;
+    margin-left: 5em;
+    transition: .5s;
+    
+}
+
+.search-icon > img {
+    height: 1.8em;
+    width: 1.8em;
+    filter: invert(50%) sepia(0%) saturate(6923%) hue-rotate(188deg) brightness(122%) contrast(98%);
+    transition: .5s;
+}
+
+.search-icon:hover > img {
+    height: 1.8em;
+    width: 1.8em;
+    filter: invert(50%) sepia(0%) saturate(6923%) hue-rotate(188deg) brightness(122%) contrast(98%);
+    transition: .5s;
+}
+
+/* MAIN VIEW */
 
 .main-view {
     grid-area: main;
+    z-index: 0;
+    background-color: var(--background-press);
+    /* background-color: orange; */
+    
 }
 
+.main-container {
+    margin: 2em;
+}
+
+.item-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    background-color: var(--background-highlight);
+    border-radius: 0.5em;
+}
+
+.item-container > img {
+    width: 11em;
+    height: 11em;
+    border-radius: 0.5em;
+    margin-top: 1.3em;
+}
+
+.item-content {
+    width: 11em;
+    line-height: 1.2em;
+    overflow: hidden;
+}
+
+.item-content > h2 {
+    color: var(--text-base);
+    font-size: 1.2em;
+    letter-spacing: .03em;
+}
+
+.item-content > p {
+    color: var(--text-subdued);
+    font-size: .9em;
+    letter-spacing: .03em;
+}
+
+.track-container {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to top, var(--background-highlight) 25%, rgba(22, 22, 22, 10%) 100%);
+    overflow-y: scroll;
+}
+
+.track-info-container {
+    width: 100vw;
+    height: 35vh;
+    display: flex;
+    padding: 2em;
+}
+
+.track-info-container > img{
+    width: 15em;
+    height: 15em;
+    box-shadow: .5em .5em 1em rgba(22, 22, 22, 50%);
+    border-radius: 0.5em;
+}
+
+.track-info-content {
+    margin-left: 2em;
+    
+}
+
+.track-info-content > p {
+    font-size: 0.8em;
+    line-height: 1em;
+    padding: 0;
+    
+}
+
+.track-info-content > h1 {
+    font-size: 5em;
+    line-height: 1em;
+    padding: 0;
+    margin: 0;
+}
+
+.track-content {
+    width: 100vw;
+    height: 70vh;
+    background-color: rgba(22, 22, 22, 50%);
+    background: linear-gradient(to top, var(--background-highlight) 25%, rgba(22, 22, 22, 10%) 100%);
+    
+}
+
+.track-options {
+    margin: 2em;
+    padding-top: 3em;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    
+}
+
+.track-options > img {
+    margin: 1em;
+}
+
+.track-add {
+    margin-left: -.5em;
+}
+
+.playlist-tracks {
+    width: 84%;
+    background-color: transparent;
+    display: grid;
+    row-gap: .3em;
+    
+}
+
+.playlist-header {
+    width: 70%;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-subdued);
+    font-size: 0.6em;
+    font-weight: 200;
+    letter-spacing: .2em;
+    border-bottom: 1px solid rgba(180, 180, 180, 30%);
+    margin-left: 7em;
+    padding-left: 3em;
+    padding-right: 3em;
+    margin-bottom: 1em;
+}
+
+.playlist-item {
+    width: 83.8%;
+    margin-left: 6.6em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-subdued);
+    font-size: 0.6em;
+    font-weight: 200;
+    letter-spacing: .2em;
+    padding-left: 3em;
+    padding-right: 3em;
+}
+
+.playlist-item-info {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.playlist-item-content {
+    margin-left: 1em;
+    line-height: .3em;
+}
+
+.playlist-item-title {
+    font-size: 1.1em;
+    font-weight: 300;
+}
+
+/* NAVIGATION BAR */
 .nav-bar {
     grid-area: navbar;
+    z-index: 0;
 }
 
+.nav-bar-container {
+    margin-left: -1em;
+    
+}
+
+.nav-list {
+    margin-top: 3em;
+}
+
+.nav-desc {
+    font-size: 1em;
+    
+    color: var(--text-base);
+}
+
+.nav-item {
+    font-size: .8em;
+    color: var(--text-subdued);
+}
+
+/* NOW PLAYING BAR */
 .now-playing-bar {
     grid-area: footer;
-    background-color: grey;
+    background-color: var(--now-playing-background);
+    z-index: 0;
+    margin-top: -9em;
+    margin-left: -1em;
+    backdrop-filter: blur(2em);
+}
+
+/* GRID CONTAINER */
+.grid-container {
+    width: 100vw;
+    height: 100vh;
+    padding: 2em;
+    padding-bottom: 12em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 20em 20em 20em 20em; 
+    column-gap: 2em;
+    row-gap: 2em;
+    overflow-y: scroll;
 }
