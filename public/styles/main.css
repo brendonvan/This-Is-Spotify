@@ -9,7 +9,8 @@
     --background-press: #000;
     --text-base: #fff;
     --text-subdued: #a7a7a7;
-    --text-color: rgb(96 200 105);
+    --text-color: rgb(101 212 110)
+  }
     --now-playing-background: rgba(40, 40, 40, 50%)
 }
   
@@ -147,8 +148,8 @@ a {
     transition: .5s;
 }
 
-
 /* MAIN VIEW */
+
 .main-view {
     grid-area: main;
     z-index: 0;

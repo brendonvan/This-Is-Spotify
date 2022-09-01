@@ -126,6 +126,11 @@ router.get('/search/input', async (req, res) => {
         res.send({ list: list});
     }
 })
+router.get("/songs", (req, res) => {
+    const context = {
+        
+    }
+})
 
 async function getAuth() {
     try{

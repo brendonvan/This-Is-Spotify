@@ -61,6 +61,10 @@ button:hover{
     transition: var(--ease);
     transform: scale(1.06);
 }
+.open-button{
+    background: none;
+    border: none;
+}
 .now-playing-bar {
     grid-area: footer;
 }
@@ -89,9 +93,7 @@ a{
     color: var(--text-subdued);
 
 }
-#help{
-    color: white;
-}
+
 
 
 
@@ -146,7 +148,7 @@ a{
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-  background-color: #04AA6D;
+  background-color: var(--text-color);
   color: white;
   padding: 16px 20px;
   border: none;
