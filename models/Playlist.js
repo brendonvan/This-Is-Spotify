@@ -20,7 +20,6 @@ const playlistSchema = new mongoose.Schema({
     },
     created_date: {
         type: String,
-        required: [true, "date added cannot be empty"]
     },
     duration_of_entire_playlist: {
         type: String,
