@@ -42,5 +42,10 @@ router.get("/album", (req, res) => {
     }
     res.render("home.ejs", context)
 })
+router.get("/songs", (req, res) => {
+    const context = {
+        
+    }
+})
 
 module.exports = router;

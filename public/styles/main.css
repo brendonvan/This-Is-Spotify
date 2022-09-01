@@ -9,7 +9,7 @@
     --background-press: #000;
     --text-base: #fff;
     --text-subdued: #a7a7a7;
-    --text-color: rgb(96 200 105)
+    --text-color: rgb(101 212 110)
   }
   
 html {
@@ -67,6 +67,7 @@ a {
     grid-area: header;
     background: grey;
 }
+
 
 .main-view {
     grid-area: main;

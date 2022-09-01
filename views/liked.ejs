@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+<%- include('partials/head', {page: 'Home'})  %>
+<link rel="stylesheet" href="/styles/liked.css" />
+<link rel="stylesheet" href="/styles/liked.css" />
+<script src="https://kit.fontawesome.com/368a590dd8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="main">
+        <%- include('partials/top-bar') %>
+        <%- include('partials/nav-bar') %>
+        <div class="main-view">
+            <div class="head">
+                <div class="heart"><i class="fa-regular fa-heart"></i></div>
+                <div class="title" style = "position:relative; top:-45px;"><h2 class="likedSongs">Liked Songs</h2> <a href="/user"><i class="fa-brands fa-spotify"></i> User <i class="fa-solid fa-circle"></i> 10,000</a> <i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 2s;"></i> 's</div>
+            </div>        
+
+            <div class="subhead">
+                <!-- <button class="play"></button> -->
+                <button class="play" onclick="play.songs();"><i class="fa-solid fa-play"></i></button>
+                <button class="shuffle" onclick="shuffle.songs()"><i class="fa-solid fa-shuffle"></i></button>
+            </div>
+            
+            <table>
+                <tr>
+                  <th class="#">#</th>
+                  <th class="tableTitle">Title</th>
+                  <th class="tableAlbum">Album</th> 
+                  <th class="tableTime">Time</th>
+                  <th></th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td class="song name">
+                    <img class="songimg" src="https://images.genius.com/9f28dbb3539fdcd04e34dcf92cab955b.1000x1000x1.png" width="30px">
+                    Argentina by Gunna
+                    </td>
+                    <td>WUNNA</td> 
+                    <td>2:29</td>
+                    <td><i class="fa-solid fa-bars"></i></td>
+                </tr>
+              </table>
+        </div>
+        <%- include('partials/now-playing-bar') %>
+    </div>
+
+    
+</body>
+</html>
