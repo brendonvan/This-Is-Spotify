@@ -22,7 +22,7 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
 // ROUTERS
-router.get("/", (req, res, next) => {
+router.get("/", async (req, res, next) => {
     try {
         const context = {
             pageName: "Home"
@@ -35,12 +35,13 @@ router.get("/", (req, res, next) => {
     }
 })
 
-router.get("/albums", (req, res, next) => {
+router.get("/:playlistId/add/:id", async (req, res, next) => {
     try {
-        const context = {
-            pageName: "Albums"
-        }
-        res.render("collection.ejs", context)
+        console.log("WORKED");
+        // add song object ID into playlist array
+        console.log(req.params.playlistId);
+        console.log(req.params.id);
+        res.redirect(`/playlist/${req.params.playlistId}`);
     } catch (error) {
         console.log(error)
         req.error = error;
@@ -48,49 +49,17 @@ router.get("/albums", (req, res, next) => {
     }
 })
 
-router.get("/tracks", (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
     try {
-        const context = {
-            pageName: "Tracks"
-        }
-        res.render("collection.ejs", context)
-    } catch (error) {
-        console.log(error)
-        req.error = error;
-        return next();
-    }
-})
 
-router.get("/genres", (req, res, next) => {
-    try {
-        const context = {
-            pageName: "Genres"
-        }
-        res.render("collection.ejs", context)
-    } catch (error) {
-        console.log(error)
-        req.error = error;
-        return next();
-    }
-})
+        // find playlist object by id using URLparams
+        // insert into playlist.ejs
 
-router.get("/playlists", (req, res, next) => {
-    try {
-        const context = {
-            pageName: "Playlists"
-        }
-        res.render("collection.ejs", context)
-    } catch (error) {
-        console.log(error)
-        req.error = error;
-        return next();
-    }
-})
+        let foundPlaylist = await db.Playlist.findById(req.params.id)
 
-router.get("/liked", (req, res, next) => {
-    try {
         const context = {
-            pageName: "Liked"
+            pageName: "Playlists",
+            playlist: foundPlaylist
         }
         res.render("playlist.ejs", context)
     } catch (error) {
@@ -101,7 +70,7 @@ router.get("/liked", (req, res, next) => {
 })
 
 // GET SPOTIFY API ACCESS_TOKEN
-router.get("/auth", (req, res) => {
+router.get("/auth", async (req, res) => {
     res.send({
         client_id: client_id,
         client_secret: client_secret,

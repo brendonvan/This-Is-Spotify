@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', {page: pageName})  %>
+<body>
+    <div class="main">
+        <%- include('partials/top-bar') %>
+        <%- include('partials/nav-bar')  %>
+        <div class="main-view">
+            <div class="main-container">
+                <h1><%= pageName %> Page</h1>
+                
+                <form action="/collection/playlists" method="POST">
+                    <input type="text" name="name_of_playlist">
+                    <button type="submit">New Playlist</button>
+                </form>
+                <ul>
+                    <% playlists.forEach((playlist) => { %>
+                        <a href="/playlist/<%= playlist._id %>"><li><%= playlist.name %></li></a>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+        <%- include('partials/now-playing-bar')  %>
+    </div>
+</body>
+</html>

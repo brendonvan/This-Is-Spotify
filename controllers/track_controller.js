@@ -81,13 +81,30 @@ router.get("/", async (req, res, next) => {
     }
 });
 
+router.get("/playlists", async (req, res, next) => {
+    try {
+        const playlists = await db.Playlist.find();
+        
+        res.send({ list: playlists});
+
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+});
+
+
 // SHOW ROUTE
 // GET request for one playlist
 router.get("/:id", async (req, res, next) => {
     try {
         const track = await db.Tracks.findOne({tracks_id: req.params.id});
+        
         console.log(track);
-        const context = {track: track};
+        const context = {
+            track: track
+        };
         res.render("track.ejs", context);
 
         // create add button to playlist
@@ -100,6 +117,9 @@ router.get("/:id", async (req, res, next) => {
         return next();
     }
 });
+
+
+
 
 // CREATE ROUTE
 // POST request for adding new playlist(s)

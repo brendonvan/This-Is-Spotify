@@ -22,7 +22,7 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true}));
 
 // ROUTERS
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
     const context = {
         // INSERT HERE
     }
@@ -30,7 +30,7 @@ router.get("/", (req, res) => {
 })
 
 // GET SPOTIFY API ACCESS_TOKEN
-router.get("/auth", (req, res) => {
+router.get("/auth", async (req, res) => {
     res.send({
         client_id: client_id,
         client_secret: client_secret,

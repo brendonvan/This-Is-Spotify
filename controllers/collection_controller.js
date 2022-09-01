@@ -22,7 +22,7 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
 // ROUTERS
-router.get("/", (req, res, next) => {
+router.get("/", async (req, res, next) => {
     try {
         const context = {
             pageName: "Home"
@@ -35,7 +35,7 @@ router.get("/", (req, res, next) => {
     }
 })
 
-router.get("/albums", (req, res, next) => {
+router.get("/albums", async (req, res, next) => {
     try {
         const context = {
             pageName: "Albums"
@@ -48,7 +48,7 @@ router.get("/albums", (req, res, next) => {
     }
 })
 
-router.get("/tracks", (req, res, next) => {
+router.get("/tracks", async (req, res, next) => {
     try {
         const context = {
             pageName: "Tracks"
@@ -61,7 +61,7 @@ router.get("/tracks", (req, res, next) => {
     }
 })
 
-router.get("/genres", (req, res, next) => {
+router.get("/genres", async (req, res, next) => {
     try {
         const context = {
             pageName: "Genres"
@@ -74,12 +74,13 @@ router.get("/genres", (req, res, next) => {
     }
 })
 
-router.get("/playlists", (req, res, next) => {
+router.get("/playlists", async (req, res, next) => {
     try {
         const context = {
-            pageName: "Playlists"
+            pageName: "Playlists",
+            playlists: await db.Playlist.find({})
         }
-        res.render("collection.ejs", context)
+        res.render("collection_playlists.ejs", context)
     } catch (error) {
         console.log(error)
         req.error = error;
@@ -87,10 +88,10 @@ router.get("/playlists", (req, res, next) => {
     }
 })
 
-router.get("/liked", (req, res, next) => {
+router.get("/liked", async (req, res, next) => {
     try {
         const context = {
-            pageName: "Liked"
+            pageName: "Liked",
         }
         res.render("playlist.ejs", context)
     } catch (error) {
@@ -100,8 +101,29 @@ router.get("/liked", (req, res, next) => {
     }
 })
 
+router.post("/playlists", async (req, res, next) => {
+    try {
+        // when name is created
+        // create new playlist object on mongoDB with just name
+
+        await db.Playlist.create({
+            name: req.body.name_of_playlist,
+            tracks: [],
+            image: "https://picsum.photos/200/",
+            total_duration: "0:00",
+            number_of_tracks: 0,
+            type: "PLAYLIST"
+        })
+        res.redirect("/collection/playlists")
+    } catch (error) {
+        console.log(error)
+        req.error = error;
+        return next();
+    }
+})
+
 // GET SPOTIFY API ACCESS_TOKEN
-router.get("/auth", (req, res) => {
+router.get("/auth", async (req, res) => {
     res.send({
         client_id: client_id,
         client_secret: client_secret,
@@ -126,12 +148,10 @@ router.get('/search/input', async (req, res) => {
         res.send({ list: list});
     }
 })
-router.get("/songs", (req, res) => {
-    const context = {
-        
-    }
-})
 
+
+
+// GET ACCESS_TOKEN
 async function getAuth() {
     try{
         //make post request to SPOTIFY API for access token, sending relavent info
