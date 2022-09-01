@@ -6,11 +6,22 @@
         <%- include('partials/top-bar') %>
         <%- include('partials/nav-bar')  %>
         <div class="main-view">
-            <div class="track-info-container">
-                <img src=<%= track.image %> alt="#">
-                <p>SONG</p>
-                <h1><%= track.title %></h1>
-                <p><%= track.artists[0] %> <%= track.duration %></p>
+            <div class="track-container">
+                <div class="track-info-container">
+                    <img src=<%= track.image %> alt=image-<%= track.title %>>
+                    <div class="track-info-content">
+                        <p>SONG</p>
+                        <h1><%= track.title %></h1>
+                        <p><b><%= track.artists[0] %></b> • <%= track.duration %></p>
+                    </div>
+                </div>
+                <div class="track-content">
+                    <div class="track-options">
+                        <a href="#"><img src="/images/icons/icon-play-button-circled-50.svg" alt="icon-play-button-circled-50"></a>
+                        <img id="track-like" src="/images/icons/icon-heart.svg" alt="icon-heart">
+                        <a class="track-add" href="#"><img src="/images/icons/icon-plus-math.svg" alt="icon-plus-math"></a>
+                    </div>
+                </div>
             </div>
         </div>
         <%- include('partials/now-playing-bar')  %>

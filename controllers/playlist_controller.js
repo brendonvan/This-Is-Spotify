@@ -17,6 +17,7 @@ const spotifyApi = new SpotifyWebApi({
     redirect_uri: redirect_uri
 });
 
+
 // MIDDLEWARE
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
@@ -62,7 +63,20 @@ router.get("/", async (req, res, next) => {
         const playlist = await db.Playlist.find();
         const context = {playlistlist: playlist};
         res.render("playlist.ejs", context);
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+});
 
+// NEW ROUTE
+// GET request for new playlist(s)
+router.get("/new", (req, res, next) => {
+    try {
+        // const playlist = await db.Playlist.find();
+        const context = {playlistlist: playlist};
+        res.render("playlist.ejs", context);
     } catch (error) {
         console.log(error);
         req.error = error;
@@ -78,7 +92,6 @@ router.get("/:id", async (req, res, next) => {
         console.log(onePlaylist);
         const context = {playlist: onePlaylist};
         res.render("playlist.ejs", context);
-
     } catch (error) {
         console.log(error);
         req.error = error;
@@ -223,5 +236,73 @@ function millisToMinutesAndSeconds(millis) {
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
   }
 
+// GET SPOTIFY API ACCESS_TOKEN
+router.get("/auth", (req, res) => {
+    res.send({
+        client_id: client_id,
+        client_secret: client_secret,
+        redirect_uri: redirect_uri
+    })
+})
+
+router.get("/callback", async (req, res) => {
+    console.log(getAuth());
+    res.render("home.ejs")
+});
+
+router.get('/search/input', async (req, res) => {
+    console.log('REQ.QUERY.SEARCH: ' + req.query.search);
+    let list = [];
+    if (req.query.search !== undefined) {
+        list = await searchList(req.query.search);
+        res.send({ list: list});
+    }
+})
+
+async function getAuth() {
+    try{
+        //make post request to SPOTIFY API for access token, sending relavent info
+        console.log("Get Auth");
+        const token_url = 'https://accounts.spotify.com/api/token';
+        const data = new URLSearchParams({'grant_type':'client_credentials'});
+        const response = await axios.post(token_url, data, {
+        headers: { 
+            "Authorization":"Basic " + new Buffer.from(`${client_id}:${client_secret}`, "utf-8").toString("base64"),
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+    })
+    console.log('GOT ACCESS_TOKEN: ' + response);
+    console.log(response.data.access_token);  
+
+    //return access token
+    return response.data.access_token;
+    
+    } catch(error){
+      console.log(error);
+    }
+}
+
+async function searchList(search) {
+    try {
+        let results = [];
+        const access_token = await getAuth();
+    
+        console.log('SEARCHLIST SEARCH: ' + search);
+    
+        // console.log(typeof access_token);
+        await spotifyApi.setAccessToken(access_token);
+        const data = await spotifyApi.searchTracks(search)
+        // console.log(data.body.tracks.items)
+        return data.body.tracks.items;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+function millisToMinutesAndSeconds(millis) {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+}
 
 module.exports = router;

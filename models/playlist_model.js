@@ -12,7 +12,7 @@ const playlist = [
         track_ids: "54NBD72JXFXzrodbQBSzWh",
         // user_id: "30ook1xhcuxfyogwi80u3gta9",
         description: "optional",
-        isAlbum: true
+        isAlbum: false
     }
 ];
 
