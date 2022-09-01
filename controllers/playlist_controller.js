@@ -55,6 +55,8 @@ router.put("/:playlistId/add/:trackId", async (req, res, next) => {
         
         let foundTrack = await db.Tracks.findOne({ tracks_id: req.params.trackId});
         let foundPlaylist = await db.Playlist.findById(req.params.playlistId);
+
+        
         
         console.log(foundTrack);
         console.log(foundPlaylist);
@@ -77,14 +79,27 @@ router.get("/:id", async (req, res, next) => {
 
         // find playlist object by id using URLparams
         // insert into playlist.ejs
-
+        // let foundTrack;
+        let context = {};
+        let foundTracks = [];
         let foundPlaylist = await db.Playlist.findById(req.params.id)
-        console.log("test: " + foundPlaylist)
-        const context = {
-            pageName: "Playlists",
-            playlist: foundPlaylist
-        }
-        res.render("playlist.ejs", context)
+        foundPlaylist.tracks.forEach( async (trackObjectId) => {
+            let track = await db.Tracks.findOne( { _id: trackObjectId});
+            foundTracks.push(track)
+            console.log(track);
+            console.log("Inside: " + foundTracks);
+            
+        })
+        
+        setTimeout(() => {
+            console.log("Outside: " + foundTracks);
+            context = {
+                pageName: "Playlists",
+                playlist: foundPlaylist,
+                playlistItems: foundTracks
+            }
+            res.render("playlist.ejs", context)
+        }, 500)
     } catch (error) {
         console.log(error)
         req.error = error;
