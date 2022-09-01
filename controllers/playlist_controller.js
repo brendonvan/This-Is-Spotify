@@ -4,6 +4,7 @@ const router = express.Router();
 const axios = require("axios");
 const db = require("../models");
 const mongoose = require("mongoose");
+var ObjectId = require('mongodb').ObjectId
 require("../config/db.connection");
 var SpotifyWebApi = require('spotify-web-api-node');
 
@@ -35,12 +36,34 @@ router.get("/", async (req, res, next) => {
     }
 })
 
-router.get("/:playlistId/add/:id", async (req, res, next) => {
+router.get("/:playlistId/add/:trackId", async (req, res, next) => {
+    try {
+        
+    } catch (error) {
+        console.log(error)
+        req.error = error;
+        return next();
+    }
+})
+
+router.put("/:playlistId/add/:trackId", async (req, res, next) => {
     try {
         console.log("WORKED");
         // add song object ID into playlist array
+        console.log(req.params.trackId);
         console.log(req.params.playlistId);
-        console.log(req.params.id);
+        
+        let foundTrack = await db.Tracks.findOne({ tracks_id: req.params.trackId});
+        let foundPlaylist = await db.Playlist.findById(req.params.playlistId);
+        
+        console.log(foundTrack);
+        console.log(foundPlaylist);
+        
+        foundPlaylist.tracks.push(foundTrack);
+        
+        const updatedPlaylist = await db.Playlist.findByIdAndUpdate(req.params.playlistId, foundPlaylist);
+
+        // console.log(updatedPlaylist);
         res.redirect(`/playlist/${req.params.playlistId}`);
     } catch (error) {
         console.log(error)
@@ -56,7 +79,7 @@ router.get("/:id", async (req, res, next) => {
         // insert into playlist.ejs
 
         let foundPlaylist = await db.Playlist.findById(req.params.id)
-
+        console.log("test: " + foundPlaylist)
         const context = {
             pageName: "Playlists",
             playlist: foundPlaylist

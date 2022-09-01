@@ -21,21 +21,23 @@
                     </div>
                     <div class="playlist-header"><p>#</p><p>TITLE</p><p>ALBUM</p><p>DATE ADDED</p><p>DURATION</p></div>
                     <div class="playlist-tracks">
-                        <div class="playlist-item">
-                            <p>1</p>
-                            <div class="playlist-item-info">
-                                <div>
-                                    <img src="https://picsum.photos/40" alt="https://picsum.photos/15">
+                        <% playlist.tracks.forEach((track, index) => { %>
+                            <div class="playlist-item">
+                                <p><%= index + 1 %></p>
+                                <div class="playlist-item-info">
+                                    <div>
+                                        <img src=<%= track.image %> alt="<%= track.title %>-image">
+                                    </div>
+                                    <div class="playlist-item-content">
+                                        <p class="playlist-item-title"><%= track.title %></p>
+                                        <p><%= track.artists %></p>
+                                    </div>
                                 </div>
-                                <div class="playlist-item-content">
-                                    <p class="playlist-item-title">YESSIR!</p>
-                                    <p>Rarin</p>
-                                </div>
+                                <p><%= track.album %></p>
+                                <p><%= track.release_date %></p>
+                                <p><%= track.duration %>></p>
                             </div>
-                            <p>YESSIR!</p>
-                            <p>Mar 3 2022</p>
-                            <p>2:03</p>
-                        </div>
+                        <% }) %>
                         
                     </div>
                 </div>

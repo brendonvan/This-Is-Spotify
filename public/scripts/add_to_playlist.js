@@ -12,6 +12,6 @@ addButton.addEventListener('click', async () => {
         let path = window.location.pathname.split("");
         let trackId = path.splice(7).join("");
         // console.log(trackId);
-        playlistOptions.innerHTML += `<a href="/playlist/${ playlist._id }/add/${ trackId }"><li> ${playlist.name} </li></a>`
+        playlistOptions.innerHTML += `<form action="/playlist/${ playlist._id }/add/${ trackId }?_method=PUT" method="POST"><button type="submit">${playlist.name}</button></form>`;
     })
 })
