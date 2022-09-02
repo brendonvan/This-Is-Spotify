@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', {page: 'Track'})  %>
+<body>
+    <div class="main">
+        <%- include('partials/top-bar') %>
+        <%- include('partials/nav-bar')  %>
+        <div class="main-view">
+            <div class="track-container">
+                <div class="track-info-container">
+                    <img src=<%= track.image %> alt=image-<%= track.title %>>
+                    <div class="track-info-content">
+                        <p>SONG</p>
+                        <h1><%= track.title %></h1>
+                        <p><b><%= track.artists[0] %></b> • <%= track.duration %></p>
+                        
+                    </div>
+                </div>
+                <div class="track-content">
+                    <div class="track-options">
+                        <a href="#"><img src="/images/icons/icon-play-button-circled-50.svg" alt="icon-play-button-circled-50"></a>
+                        <img id="track-like" src="/images/icons/icon-heart.svg" alt="icon-heart">
+                        <a class="track-add" id="add-to-playlist" href="#"><img src="/images/icons/icon-plus-math.svg" alt="icon-plus-math"></a>
+                    </div>
+                    <div>
+                        <ul id="playlistOptions">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('partials/now-playing-bar')  %>
+    </div>
+</body>
+</html>

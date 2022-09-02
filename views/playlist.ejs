@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', {page: 'Playlist'})  %>
+<body>
+    <div class="main">
+        <%- include('partials/top-bar') %>
+        <%- include('partials/nav-bar')  %>
+        <div class="main-view">
+            <div class="track-container">
+                <div class="track-info-container">
+                    <img src=<%= playlist.image %> alt=image-<%= playlist.name %>>
+                    <div class="track-info-content">
+                        <p><%= playlist.type %></p>
+                        <h1><%= playlist.name %></h1>
+                        <p><b>User</b> • <%= playlist.total_duration %></p>
+                    </div>
+                </div>
+                <div class="track-content">
+                    <div class="track-options">
+                        <a href="#"><img src="/images/icons/icon-play-button-circled-50.svg" alt="icon-play-button-circled-50"></a>
+                    </div>
+                    <div class="playlist-header"><p>#</p><p>TITLE</p><p>ALBUM</p><p>DATE ADDED</p><p>DURATION</p></div>
+                    <div class="playlist-tracks">
+                        <% playlistItems.forEach((track, index) => { %>
+                            <div class="playlist-item">
+                                <p><%= index + 1 %></p>
+                                <div class="playlist-item-info">
+                                    <div>
+                                        <img src=<%= track.image %> alt="<%= track.title %>-image">
+                                    </div>
+                                    <div class="playlist-item-content">
+                                        <p class="playlist-item-title"><%= track.title %></p>
+                                        <p><%= track.artists %></p>
+                                    </div>
+                                </div>
+                                <p><%= track.album %></p>
+                                <p><%= track.release_date %></p>
+                                <p><%= track.duration %>></p>
+                            </div>
+                        <% }) %>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('partials/now-playing-bar')  %>
+    </div>
+</body>
+</html>

@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/style.css">
-    <style>@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');</style>
-    <title>Spotify - Web Player</title>
-</head>
+<%- include('partials/head', {page: 'Home'})  %>
 <body>
-    <h1>Good afternoon</h1>
+    <div class="main">
+        <%- include('partials/top-bar') %>
+        <%- include('partials/nav-bar') %>
+        <div class="main-view">
+            <div class="main-container">
+                <h1>Home Page</h1>
+                <h2>Not sure what to do with this page yet... </h2>
+                <h2>ZOOM IN BROWSER 125%</h2>
+            </div>
+        </div>
+        <%- include('partials/now-playing-bar') %>
+    </div>
+    
 </body>
 </html>
