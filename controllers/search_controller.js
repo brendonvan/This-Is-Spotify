@@ -83,9 +83,9 @@ async function searchList(search) {
     try {
         let results = [];
         const access_token = await getAuth();
-    
+
         console.log('SEARCHLIST SEARCH: ' + search);
-    
+        
         // console.log(typeof access_token);
         await spotifyApi.setAccessToken(access_token);
         const data = await spotifyApi.searchTracks(search)
