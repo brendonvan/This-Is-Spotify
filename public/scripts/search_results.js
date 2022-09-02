@@ -12,7 +12,7 @@ searchInput.addEventListener('keypress', async (e) => {
     if (event.key === "Enter") {
         let input = searchInput.value
         console.log(input);
-        window.location.href = "http://localhost:8080/search/";    
+        window.location.href = "https://this-is-spotifyy.herokuapp.com/search/";    
     }
     
 })
@@ -31,7 +31,7 @@ searchInput.addEventListener('keyup', async (e) => {
     
     setTimeout( async () => {
         console.log("Searching")
-        const response = await fetch(`http://localhost:8080/search/input?search=${input}`, { method: "GET" });
+        const response = await fetch(`https://this-is-spotifyy.herokuapp.com/search/input?search=${input}`, { method: "GET" });
         const data = await response.json();
         renderResults(data.list);
     }, 500)
