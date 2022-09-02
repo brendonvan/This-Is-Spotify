@@ -1,13 +1,16 @@
 console.log("Like:loaded")
 
-const img = document.getElementById("track-like");
+const likeButton = document.getElementById("track-like");
+
 let toggle = true;
 
-img.addEventListener('click', () => {
+likeButton.addEventListener('click', () => {
     toggle = !toggle;
     if (toggle) {
-        img.src = "/images/icons/icon-heart.svg";
+        likeButton.src = "/images/icons/icon-heart.svg";
+        // Remove Song from Liked Songs Playlist
     } else {
-        img.src = "/images/icons/icon-filled-heart.svg";
+        likeButton.src = "/images/icons/icon-filled-heart.svg";
+        // Add Song to Liked Songs Playlist
     }
 })
