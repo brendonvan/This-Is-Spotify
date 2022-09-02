@@ -4,10 +4,11 @@ const SpotifyWebApi = require("spotify-web-api-node");
 const express = require("express");
 const axios = require("axios");
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 let client_id = process.env.CLIENT_ID;
 let client_secret = process.env.CLIENT_SECRET;
 let redirect_uri = "http://localhost:8080/callback";
+
 
 const spotifyApi = new SpotifyWebApi({
     client_id: client_id,

@@ -10,9 +10,8 @@
     --text-base: #fff;
     --text-subdued: #a7a7a7;
     --text-color: rgb(101 212 110)
-  }
     --now-playing-background: rgba(40, 40, 40, 50%)
-}
+  }
   
 html {
     width: 100%;
