@@ -7,7 +7,6 @@ const searchButton = document.getElementById("search-button")
 
 const searchable = [];
 
-
 searchInput.addEventListener('keypress', async (e) => {
     if (event.key === "Enter") {
         let input = searchInput.value

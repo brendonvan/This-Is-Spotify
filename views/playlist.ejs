@@ -25,7 +25,7 @@
                             <div class="playlist-item">
                                 <p><%= index + 1 %></p>
                                 <div class="playlist-item-info">
-                                    <div>
+                                    <div class="playlist-item-image">
                                         <img src=<%= track.image %> alt="<%= track.title %>-image">
                                     </div>
                                     <div class="playlist-item-content">
@@ -35,7 +35,7 @@
                                 </div>
                                 <p><%= track.album %></p>
                                 <p><%= track.release_date %></p>
-                                <p><%= track.duration %>></p>
+                                <p><%= track.duration %></p>
                             </div>
                         <% }) %>
                         

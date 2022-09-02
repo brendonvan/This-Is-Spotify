@@ -6,7 +6,7 @@ const playlistOptions = document.getElementById("playlistOptions");
 addButton.addEventListener('click', async () => {
     const response = await fetch(`http://localhost:8080/track/playlists`, { method: "GET" });
     const data = await response.json();
-
+    
     data.list.forEach((playlist) => {
         // console.log(playlist);
         let path = window.location.pathname.split("");

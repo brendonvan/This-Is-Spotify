@@ -56,15 +56,13 @@ router.put("/:playlistId/add/:trackId", async (req, res, next) => {
         let foundTrack = await db.Tracks.findOne({ tracks_id: req.params.trackId});
         let foundPlaylist = await db.Playlist.findById(req.params.playlistId);
 
-        
-        
-        console.log(foundTrack);
-        console.log(foundPlaylist);
+        console.log("FOUND TRACK " + foundTrack);
+        console.log("FOUND PLAYLIST " + foundPlaylist);
         
         foundPlaylist.tracks.push(foundTrack);
         
         const updatedPlaylist = await db.Playlist.findByIdAndUpdate(req.params.playlistId, foundPlaylist);
-
+        
         // console.log(updatedPlaylist);
         res.redirect(`/playlist/${req.params.playlistId}`);
     } catch (error) {
@@ -84,7 +82,7 @@ router.get("/:id", async (req, res, next) => {
         let foundTracks = [];
         let foundPlaylist = await db.Playlist.findById(req.params.id)
         foundPlaylist.tracks.forEach( async (trackObjectId) => {
-            let track = await db.Tracks.findOne( { _id: trackObjectId});
+            let track = await db.Tracks.findOne({ _id: trackObjectId});
             foundTracks.push(track)
             console.log(track);
             console.log("Inside: " + foundTracks);

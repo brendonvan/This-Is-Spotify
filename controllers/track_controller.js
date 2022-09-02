@@ -34,7 +34,7 @@ router.get("/create/:id", async (req, res, next) => {
         let track = await spotifyApi.getTrack(req.params.id);
         // console.log("Track Name: " + track)
         let artistsList = [];
-
+        
         track.body.artists.forEach((artist) => {
             artistsList.push(artist.name);
         })
@@ -84,9 +84,7 @@ router.get("/", async (req, res, next) => {
 router.get("/playlists", async (req, res, next) => {
     try {
         const playlists = await db.Playlist.find();
-        
         res.send({ list: playlists});
-
     } catch (error) {
         console.log(error);
         req.error = error;

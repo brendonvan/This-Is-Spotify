@@ -307,6 +307,12 @@ a {
     align-items: center;
 }
 
+.playlist-item-image > img {
+    width: 4em;
+    height: 4em;
+    
+}
+
 .playlist-item-content {
     margin-left: 1em;
     line-height: .3em;
