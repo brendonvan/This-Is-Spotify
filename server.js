@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3002;
 let client_id = process.env.CLIENT_ID;
 let client_secret = process.env.CLIENT_SECRET;
-let redirect_uri = "http://localhost:8080/callback";
+let redirect_uri = "/callback";
 
 const spotifyApi = new SpotifyWebApi({
     client_id: client_id,

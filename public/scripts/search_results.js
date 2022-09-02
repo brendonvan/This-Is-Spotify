@@ -60,7 +60,7 @@ function renderResults(results) {
 
 async function requestAuthorization() {
     console.log("Authorization Clicked")
-    const response = await fetch(`http://localhost:8080/auth`, { method: "GET" });
+    const response = await fetch(`https://this-is-spotifyy.herokuapp.com/auth`, { method: "GET" });
     const data = await response.json();
 
     let url = "https://accounts.spotify.com/authorize";

@@ -4,7 +4,7 @@ const addButton = document.getElementById("add-to-playlist");
 const playlistOptions = document.getElementById("playlistOptions");
 
 addButton.addEventListener('click', async () => {
-    const response = await fetch(`http://localhost:8080/track/playlists`, { method: "GET" });
+    const response = await fetch(`https://this-is-spotifyy.herokuapp.com//track/playlists`, { method: "GET" });
     const data = await response.json();
 
     data.list.forEach((playlist) => {
