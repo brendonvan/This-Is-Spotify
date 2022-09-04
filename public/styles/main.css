@@ -9,10 +9,11 @@
     --background-press: #000;
     --text-base: #fff;
     --text-subdued: #a7a7a7;
+
     --text-color: rgb(101 212 110)
     --now-playing-background: rgba(40, 40, 40, 50%)
-  }
-  
+};
+
 html {
     width: 100%;
     height: 100%;
@@ -33,6 +34,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 ul {
     list-style-type: none;
+    color: var(--text-base);
 }
 
 a { 
@@ -304,6 +306,12 @@ a {
     display: flex;
     flex-flow: row;
     align-items: center;
+}
+
+.playlist-item-image > img {
+    width: 4em;
+    height: 4em;
+    
 }
 
 .playlist-item-content {

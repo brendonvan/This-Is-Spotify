@@ -8,11 +8,11 @@
         <div class="main-view">
             <div class="track-container">
                 <div class="track-info-container">
-                    <img src="https://picsum.photos/200" alt=image-track-title>
+                    <img src=<%= playlist.image %> alt=image-<%= playlist.name %>>
                     <div class="track-info-content">
-                        <p>PLAYLIST</p>
-                        <h1>Track Title</h1>
-                        <p><b>Artist</b> • 2:00</p>
+                        <p><%= playlist.type %></p>
+                        <h1><%= playlist.name %></h1>
+                        <p><b>User</b> • <%= playlist.total_duration %></p>
                     </div>
                 </div>
                 <div class="track-content">
@@ -21,81 +21,24 @@
                     </div>
                     <div class="playlist-header"><p>#</p><p>TITLE</p><p>ALBUM</p><p>DATE ADDED</p><p>DURATION</p></div>
                     <div class="playlist-tracks">
-                        <div class="playlist-item">
-                            <p>1</p>
-                            <div class="playlist-item-info">
-                                <div>
-                                    <img src="https://picsum.photos/40" alt="https://picsum.photos/15">
+                        <% playlistItems.forEach((track, index) => { %>
+                            <div class="playlist-item">
+                                <p><%= index + 1 %></p>
+                                <div class="playlist-item-info">
+                                    <div class="playlist-item-image">
+                                        <img src=<%= track.image %> alt="<%= track.title %>-image">
+                                    </div>
+                                    <div class="playlist-item-content">
+                                        <p class="playlist-item-title"><%= track.title %></p>
+                                        <p><%= track.artists %></p>
+                                    </div>
                                 </div>
-                                <div class="playlist-item-content">
-                                    <p class="playlist-item-title">YESSIR!</p>
-                                    <p>Rarin</p>
-                                </div>
+                                <p><%= track.album %></p>
+                                <p><%= track.release_date %></p>
+                                <p><%= track.duration %></p>
                             </div>
-                            <p>YESSIR!</p>
-                            <p>Mar 3 2022</p>
-                            <p>2:03</p>
-                        </div>
-                        <div class="playlist-item">
-                            <p>1</p>
-                            <div class="playlist-item-info">
-                                <div>
-                                    <img src="https://picsum.photos/40" alt="https://picsum.photos/15">
-                                </div>
-                                <div class="playlist-item-content">
-                                    <p class="playlist-item-title">YESSIR!</p>
-                                    <p>Rarin</p>
-                                </div>
-                            </div>
-                            <p>YESSIR!</p>
-                            <p>Mar 3 2022</p>
-                            <p>2:03</p>
-                        </div>
-                        <div class="playlist-item">
-                            <p>1</p>
-                            <div class="playlist-item-info">
-                                <div>
-                                    <img src="https://picsum.photos/40" alt="https://picsum.photos/15">
-                                </div>
-                                <div class="playlist-item-content">
-                                    <p class="playlist-item-title">YESSIR!</p>
-                                    <p>Rarin</p>
-                                </div>
-                            </div>
-                            <p>YESSIR!</p>
-                            <p>Mar 3 2022</p>
-                            <p>2:03</p>
-                        </div>
-                        <div class="playlist-item">
-                            <p>1</p>
-                            <div class="playlist-item-info">
-                                <div>
-                                    <img src="https://picsum.photos/40" alt="https://picsum.photos/15">
-                                </div>
-                                <div class="playlist-item-content">
-                                    <p class="playlist-item-title">YESSIR!</p>
-                                    <p>Rarin</p>
-                                </div>
-                            </div>
-                            <p>YESSIR!</p>
-                            <p>Mar 3 2022</p>
-                            <p>2:03</p>
-                        </div>
-                        <div class="playlist-item">
-                            <p>1</p>
-                            <div class="playlist-item-info">
-                                <div>
-                                    <img src="https://picsum.photos/40" alt="https://picsum.photos/15">
-                                </div>
-                                <div class="playlist-item-content">
-                                    <p class="playlist-item-title">YESSIR!</p>
-                                    <p>Rarin</p>
-                                </div>
-                            </div>
-                            <p>YESSIR!</p>
-                            <p>Mar 3 2022</p>
-                            <p>2:03</p>
-                        </div>
+                        <% }) %>
+                        
                     </div>
                 </div>
             </div>
