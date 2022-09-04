@@ -12,10 +12,7 @@ router.use(express.urlencoded({ extended: true}));
 
 // ROUTERS
 router.get("/", async (req, res) => {
-    const context = {
-        // INSERT HERE
-    }
-    res.render("search.ejs", context)
+    res.render("search.ejs")
 })
 
 module.exports = router;
