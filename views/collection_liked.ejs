@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('partials/head', {page: 'Search'})  %>
+<%- include('partials/head', {page: pageName})  %>
 <body>
     <div class="main">
         <%- include('partials/top-bar') %>
-        <%- include('partials/nav-bar', {currentPage: 'Search'})  %>
+        <%- include('partials/nav-bar', {currentPage: 'Liked Songs'})  %>
         <div class="main-view">
-            <div id="results" class="grid-container">
-                <h1 style="margin-top: -.35em">Search</h1> 
+            <div class="main-container">
+                <h1><%= pageName %> Page</h1>
+                
             </div>
         </div>
         <%- include('partials/now-playing-bar')  %>

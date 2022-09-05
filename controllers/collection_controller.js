@@ -31,7 +31,7 @@ router.get("/liked", async (req, res, next) => {
         const context = {
             pageName: "Liked",
         }
-        res.render("collection.ejs", context)
+        res.render("collection_liked.ejs", context)
     } catch (error) {
         console.log(error)
         req.error = error;
