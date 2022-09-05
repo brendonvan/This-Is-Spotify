@@ -45,14 +45,11 @@ router.get("/:id", async (req, res, next) => {
         let foundPlaylist = await db.Playlist.findById(req.params.id)
         foundPlaylist.tracks.forEach( async (trackObjectId) => {
             let track = await db.Tracks.findOne({ _id: trackObjectId});
-            foundTracks.push(track)
-            console.log(track);
-            console.log("Inside: " + foundTracks);
+            foundTracks.push(track);
             
         })
         
         setTimeout(() => {
-            console.log("Outside: " + foundTracks);
             context = {
                 pageName: "Playlists",
                 playlist: foundPlaylist,

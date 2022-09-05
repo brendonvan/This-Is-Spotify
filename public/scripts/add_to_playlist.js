@@ -6,10 +6,13 @@ const playlistOptions = document.getElementById("playlistOptions");
 
 // EVENT LISTENERS
 addButton.addEventListener('click', async () => {
+    console.log("Event listener Clicked")
     // FETCH PLAYLIST DATA
     const response = await fetch(`http://localhost:8080/track/playlists`, { method: "GET" });
     const data = await response.json();
     
+    console.log(data);
+
     // FOR EACH PLAYLIST ADD HTML ELEMENT
     data.list.forEach((playlist) => {
         let path = window.location.pathname.split("");

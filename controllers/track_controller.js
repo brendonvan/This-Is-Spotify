@@ -70,6 +70,18 @@ router.get("/create/:id", async (req, res, next) => {
     }
 });
 
+// SEND PLAYLIST TO TRACK
+router.get("/playlists", async (req, res, next) => {
+    try {
+        const playlists = await db.Playlist.find();
+        res.send({ list: playlists});
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+});
+
 // SHOW ROUTE
 router.get("/:id", async (req, res, next) => {
     try {

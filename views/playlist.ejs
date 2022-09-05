@@ -18,6 +18,7 @@
                 <div class="track-content">
                     <div class="track-options">
                         <a href="#"><img src="/images/icons/icon-play-button-circled-50.svg" alt="icon-play-button-circled-50"></a>
+                        <form action="/playlist/<%= parseInt(playlist._id) %>?_method=DELETE" method="post"><button type="submit">Delete</button></form>
                     </div>
                     <div class="playlist-header"><p>#</p><p>TITLE</p><p>ALBUM</p><p>DATE ADDED</p><p>DURATION</p></div>
                     <div class="playlist-tracks">
@@ -36,6 +37,7 @@
                                 <p><%= track.album %></p>
                                 <p><%= track.release_date %></p>
                                 <p><%= track.duration %></p>
+
                             </div>
                         <% }) %>
                         
