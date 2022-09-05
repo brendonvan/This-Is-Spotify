@@ -100,24 +100,27 @@ a {
     margin-left: 5em;
     border: none;
     letter-spacing: 0.05em;
-    transition: .5s;
+    /* transition: .5s; */
 }
 
 .search-bar::placeholder {
     font-size: 1em;
     letter-spacing: 0.05em;
+    margin-left: 5em;
     color: transparent;
     transition: .5s;
 }
 
 .search-bar:focus {
     width: 30em;
+    margin-left: 5em;
     outline: none;
     background-color: var(--text-base);
 }
 
 .search-bar::placeholder {
     font-size: 1em;
+    margin-left: 5em;
     letter-spacing: .05em;
     color: var(--text-subdued);
     transition: .5s;
