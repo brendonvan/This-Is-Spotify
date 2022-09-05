@@ -67,4 +67,32 @@ router.get("/:id", async (req, res, next) => {
     }
 })
 
+// DELETE ROUTE FOR TRACK
+router.delete("/:trackId", async (req, res, next) => {
+    try {
+        const deleteTrack = await db.Playlist.findByIdAndDelete(req.params.id);
+        console.log(deleteTrack);
+        return res.redirect("/playlist");
+
+    } catch (error) {
+      console.log(error);
+      req.error = error;
+      return next();
+    }
+});
+
+// DELETE ROUTE FOR PLAYLIST
+router.delete("/:playlistId/delete/:trackId", async (req, res, next) => {
+    try {
+        const deletePlaylist = await db.Playlist.findByIdAndDelete(req.params.id);
+        console.log(deletePlaylist);
+        return res.redirect("/playlist");
+        
+    } catch (error) {
+      console.log(error);
+      req.error = error;
+      return next();
+    }
+});
+
 module.exports = router;
