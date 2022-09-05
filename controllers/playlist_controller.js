@@ -65,11 +65,16 @@ router.get("/:id", async (req, res, next) => {
 })
 
 // DELETE ROUTE FOR TRACK
-router.delete("/:playlistId/delete/:trackId", async (req, res, next) => {
+router.put("/:playlistId/delete/:trackId", async (req, res, next) => {
     try {
-        const deleteTrack = await db.Playlist.findByIdAndDelete(req.params.id);
-        console.log(deleteTrack);
-        return res.redirect("/playlist");
+        const foundPlaylist = await db.Playlist.findById(req.params.playlistId);
+        const foundTrack = await db.Tracks.findById(req.params.trackId)
+        // console.log(foundPlaylist.tracks)
+        foundPlaylist.tracks.splice(foundPlaylist.tracks.indexOf(req.params.trackId), 1);
+        // console.log(foundPlaylist.tracks)
+        await db.Playlist.findByIdAndUpdate(req.params.playlistId, {tracks: foundPlaylist.tracks});
+
+        return res.redirect(`/playlist/${req.params.playlistId}`);
 
     } catch (error) {
       console.log(error);
