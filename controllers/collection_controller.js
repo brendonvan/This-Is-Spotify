@@ -34,7 +34,7 @@ router.post("/playlists", async (req, res, next) => {
         let newPlaylist = await db.Playlist.create({
             name: "New Playlist",
             tracks: [],
-            image: "https://picsum.photos/200/",
+            image: "https://imgur.com/IV0wNkj",
             total_duration: "0:00",
             number_of_tracks: 0,
             type: "PLAYLIST"
