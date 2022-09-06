@@ -12,7 +12,18 @@ router.use(express.urlencoded({ extended: true}));
 
 // ROUTERS
 router.get("/", async (req, res) => {
-    res.render("search.ejs")
+    try {
+        const context = {
+            pageName: "Search",
+            playlists: await db.Playlist.find({})
+        }
+        res.render("search.ejs", context);
+    } catch (error) {
+        console.log(error)
+        req.error = error;
+        return next();
+    }
+    
 })
 
 module.exports = router;

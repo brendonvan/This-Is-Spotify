@@ -11,7 +11,7 @@
                     <img src=<%= playlist.image %> alt=image-<%= playlist.name %>>
                     <div class="track-info-content">
                         <p><%= playlist.type %></p>
-                        <h1><%= playlist.name %></h1>
+                        <form id="save_form" action="/playlist/<%= playlist._id %>/edit?_method=PUT" method="post"><input class="edit-playlist-name" type="text" name="playlistName"></form>
                         <p><b>User</b> • <%= playlist.total_duration %></p>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                         <a href="#"><img src="/images/icons/icon-play-button-circled-50.svg" alt="icon-play-button-circled-50"></a>
                         <% if (playlist._id != "63167b9782029db6ab375237") { %>
                             <form id="delete_form" action="/playlist/<%= playlist._id %>?_method=DELETE" method="post"><button class="delete-button" form="delete_form" type="submit"><img src="/images/icons/icons-remove.svg" alt="icon-remove-img"></button></form>
-                            <a style="color: white" href="/playlist/<%= playlist._id %>/edit"><img src="/images/icons/icons-edit.svg" alt="icons-edit"></a>
+                            <button class="delete-button" form="save_form" type="submit"><img src="/images/icons/icons-save.svg" alt="icons-save.svg"></button>
                         <% } %>
                     </div>
                     <div class="playlist-header"><p>#</p><p>TITLE</p><p>ALBUM</p><p>DATE ADDED</p><p>DURATION</p></div>
@@ -40,10 +40,9 @@
                                 <p><%= track.album %></p>
                                 <p><%= track.release_date %></p>
                                 <p><%= track.duration %></p>
-                                <form action="/playlist/<%= playlist._id %>/delete/<%= track._id %>?_method=PUT" method="post"><button class="delete-button"  type="submit"><img src="/images/icons/icons-remove-small.svg" alt="icon-remove-img"></button></form>
+                                <form action="/playlist/<%= playlist._id %>/delete/<%= track._id %>?_method=PUT" method="post"><button type="submit">Delete</button></form>
                             </div>
                         <% }) %>
-                        
                     </div>
                 </div>
             </div>

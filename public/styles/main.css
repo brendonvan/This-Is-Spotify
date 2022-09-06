@@ -100,24 +100,27 @@ a {
     margin-left: 5em;
     border: none;
     letter-spacing: 0.05em;
-    transition: .5s;
+    /* transition: .5s; */
 }
 
 .search-bar::placeholder {
     font-size: 1em;
     letter-spacing: 0.05em;
+    margin-left: 5em;
     color: transparent;
     transition: .5s;
 }
 
 .search-bar:focus {
     width: 30em;
+    margin-left: 5em;
     outline: none;
     background-color: var(--text-base);
 }
 
 .search-bar::placeholder {
     font-size: 1em;
+    margin-left: 5em;
     letter-spacing: .05em;
     color: var(--text-subdued);
     transition: .5s;
@@ -220,7 +223,6 @@ a {
 
 .track-info-content {
     margin-left: 2em;
-    
 }
 
 .track-info-content > p {
@@ -290,9 +292,9 @@ a {
 .playlist-item {
     width: 83.8%;
     margin-left: 6.6em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: inline-grid;
+    align-items: center; 
+    grid-template-columns: 50px 400px 250px 300px 50px 200px;
     color: var(--text-subdued);
     font-size: 0.6em;
     font-weight: 200;
@@ -305,6 +307,7 @@ a {
     display: flex;
     flex-flow: row;
     align-items: center;
+    margin-left: 10em;
 }
 
 .playlist-item-image > img {
@@ -316,6 +319,7 @@ a {
 .playlist-item-content {
     margin-left: 1em;
     line-height: .3em;
+    
 }
 
 .playlist-item-title {
@@ -323,6 +327,21 @@ a {
     font-weight: 300;
 }
 
+.edit-playlist-name {
+    width: 7em;
+    height: .95em;
+    background-color: transparent;
+    color: var(--text-base);
+    font-family: var(--font-family);
+    font-size: 6em;
+}
+
+.delete-button {
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
 /* NAVIGATION BAR */
 .nav-bar {
     grid-area: navbar;
@@ -347,6 +366,66 @@ a {
 .nav-item {
     font-size: .8em;
     color: var(--text-subdued);
+}
+
+.nav-item-content {
+    height: 1.6em;
+    display: flex;
+    align-items: center;
+}
+
+.nav-item-content > h4 {
+    margin-left: .5em;
+    color: var(--text-subdued);
+    font-size: .9em;
+}
+
+.nav-item-content h4:hover {
+    color: var(--text-base);
+}
+
+.nav-item-content:hover {
+    filter: invert(0%) sepia(0%) saturate(100%) hue-rotate(0deg) brightness(100%) contrast(150%);
+    transition: .5s;
+}
+
+/* .nav-item-current {
+    filter: invert(0%) sepia(0%) saturate(100%) hue-rotate(0deg) brightness(100%) contrast(150%);
+} */
+
+.nav-selected {
+    color: var(--text-base);
+}
+
+.nav-not-selected {
+    color: var(--text-subdued);
+}
+
+.nav-playlist-item:hover {
+    filter: invert(0%) sepia(0%) saturate(100%) hue-rotate(0deg) brightness(200%) contrast(150%);
+    transition: .5s;
+}
+
+.create-playlist:hover {
+    filter: invert(0%) sepia(0%) saturate(100%) hue-rotate(0deg) brightness(200%) contrast(150%);
+    transition: .5s;
+}
+
+.nav-playlist-item {
+    font-family: var(--font-family);
+    color: var(--text-subdued);
+    font-size: .8em;
+    /* height: 1.8em; */
+    margin-top: .8em;
+}
+
+.create-playlist {
+    font-family: var(--font-family);
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--text-subdued);
+    font-size: 1em;
 }
 
 /* NOW PLAYING BAR */

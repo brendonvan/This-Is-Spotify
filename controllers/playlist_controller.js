@@ -13,6 +13,72 @@ router.use(express.urlencoded({ extended: true }));
 
 // ROUTERS
 
+router.get("/:id", async (req, res, next) => {
+    try {
+        let context = {};
+        let foundTracks = [];
+        let foundPlaylist = await db.Playlist.findById(req.params.id)
+        foundPlaylist.tracks.forEach( async (trackObjectId) => {
+            let track = await db.Tracks.findOne({ _id: trackObjectId});
+            foundTracks.push(track);
+            
+        })
+        
+        setTimeout(async () => {
+            context = {
+                pageName: "Playlists",
+                playlist: foundPlaylist,
+                playlistItems: foundTracks,
+                playlists: await db.Playlist.find({})
+            }
+            res.render("playlist.ejs", context)
+        }, 500)
+    } catch (error) {
+        console.log(error)
+        req.error = error;
+        return next();
+    }
+})
+
+// EDIT PAGE
+router.get("/:id/edit", async (req, res, next) => {
+    try {
+        let context = {};
+        let foundTracks = [];
+        let foundPlaylist = await db.Playlist.findById(req.params.id);
+        foundPlaylist.tracks.forEach( async (trackObjectId) => {
+            let track = await db.Tracks.findOne({ _id: trackObjectId});
+            foundTracks.push(track);
+        })
+        
+        setTimeout(async () => {
+            context = {
+                pageName: "Playlists",
+                playlist: foundPlaylist,
+                playlistItems: foundTracks,
+                playlists: await db.Playlist.find({})
+            }
+            res.render("playlist_edit.ejs", context)
+        }, 500)
+    } catch (error) {
+        console.log(error)
+        req.error = error;
+        return next();
+    }
+})
+
+// SAVE EDIT 
+router.put("/:id/edit", async (req, res, next) => {
+    try {
+        await db.Playlist.findByIdAndUpdate(req.params.id, { name: req.body.playlistName })
+        res.redirect(`/playlist/${req.params.id}`);
+    } catch (error) {
+        console.log(error)
+        req.error = error;
+        return next();
+    }
+})
+
 // ADD TRACK TO PLAYLIST - UPDATE ROUTE
 router.put("/:playlistId/add/:trackId", async (req, res, next) => {
     try {
@@ -31,32 +97,6 @@ router.put("/:playlistId/add/:trackId", async (req, res, next) => {
 
         // REDIRECT TO PLAYLIST
         res.redirect(`/playlist/${req.params.playlistId}`);
-    } catch (error) {
-        console.log(error)
-        req.error = error;
-        return next();
-    }
-})
-
-router.get("/:id", async (req, res, next) => {
-    try {
-        let context = {};
-        let foundTracks = [];
-        let foundPlaylist = await db.Playlist.findById(req.params.id)
-        foundPlaylist.tracks.forEach( async (trackObjectId) => {
-            let track = await db.Tracks.findOne({ _id: trackObjectId});
-            foundTracks.push(track);
-            
-        })
-        
-        setTimeout(() => {
-            context = {
-                pageName: "Playlists",
-                playlist: foundPlaylist,
-                playlistItems: foundTracks
-            }
-            res.render("playlist.ejs", context)
-        }, 500)
     } catch (error) {
         console.log(error)
         req.error = error;
@@ -87,8 +127,7 @@ router.put("/:playlistId/delete/:trackId", async (req, res, next) => {
 router.delete("/:playlistId", async (req, res, next) => {
     try {
         await db.Playlist.findByIdAndDelete(req.params.playlistId);
-        return res.redirect("/collection/playlists");
-        
+        res.redirect("/");
     } catch (error) {
       console.log(error);
       req.error = error;
