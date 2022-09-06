@@ -173,14 +173,14 @@ a {
 }
 
 .item-container > img {
-    width: 11em;
-    height: 11em;
+    width: 9em;
+    height: 9em;
     border-radius: 0.5em;
     margin-top: 1.3em;
 }
 
 .item-content {
-    width: 11em;
+    width: 9em;
     line-height: 1.2em;
     overflow: hidden;
 }
@@ -361,7 +361,7 @@ a {
 
 /* GRID CONTAINER */
 .grid-container {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     padding: 2em;
     padding-bottom: 12em;
