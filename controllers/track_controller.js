@@ -74,6 +74,7 @@ router.get("/create/:id", async (req, res, next) => {
 router.get("/playlists", async (req, res, next) => {
     try {
         const playlists = await db.Playlist.find();
+
         res.send({ list: playlists});
     } catch (error) {
         console.log(error);
@@ -89,7 +90,8 @@ router.get("/:id", async (req, res, next) => {
         const track = await db.Tracks.findOne({tracks_id: req.params.id});
 
         const context = {
-            track: track
+            track: track,
+            playlists: await db.Playlist.find({})
         };
         res.render("track.ejs", context);
     } catch (error) {

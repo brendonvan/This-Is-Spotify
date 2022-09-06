@@ -13,7 +13,7 @@ router.use(express.urlencoded({ extended: true}));
 // ROUTERS
 router.get("/", async (req, res) => {
     const context = {
-        // INSERT HERE
+        playlists: await db.Playlist.find({})
     }
     res.render("home.ejs", context)
 })

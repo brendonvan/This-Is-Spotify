@@ -12,26 +12,15 @@ router.use(express.urlencoded({ extended: true }));
 
 // ROUTERS
 
-router.get("/playlists", async (req, res, next) => {
-    try {
-        const context = {
-            pageName: "Playlists",
-            playlists: await db.Playlist.find({})
-        }
-        res.render("collection_playlists.ejs", context)
-    } catch (error) {
-        console.log(error)
-        req.error = error;
-        return next();
-    }
-})
-
+// LIKED SONGS ROUTE
 router.get("/liked", async (req, res, next) => {
     try {
         const context = {
             pageName: "Liked",
+            playlist: await db.Playlist.findById("63167b9782029db6ab375237"),
+            playlists: await db.Playlist.find({})
         }
-        res.render("collection_liked.ejs", context)
+        res.render("playlist.ejs", context)
     } catch (error) {
         console.log(error)
         req.error = error;
@@ -39,20 +28,18 @@ router.get("/liked", async (req, res, next) => {
     }
 })
 
+// CREATE PLAYLIST
 router.post("/playlists", async (req, res, next) => {
     try {
-        // when name is created
-        // create new playlist object on mongoDB with just name
-
-        await db.Playlist.create({
-            name: req.body.name_of_playlist,
+        let newPlaylist = await db.Playlist.create({
+            name: "New Playlist",
             tracks: [],
             image: "https://picsum.photos/200/",
             total_duration: "0:00",
             number_of_tracks: 0,
             type: "PLAYLIST"
         })
-        res.redirect("/collection/playlists")
+        res.redirect(`/playlist/${newPlaylist._id}`)
     } catch (error) {
         console.log(error)
         req.error = error;
