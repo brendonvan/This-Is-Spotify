@@ -40,7 +40,7 @@
                                 <p><%= track.album %></p>
                                 <p><%= track.release_date %></p>
                                 <p><%= track.duration %></p>
-                                <form action="/playlist/<%= playlist._id %>/delete/<%= track._id %>?_method=PUT" method="post"><button type="submit">Delete</button></form>
+                                <form action="/playlist/<%= playlist._id %>/delete/<%= track._id %>?_method=PUT" method="post"><button class="delete-button" type="submit"><img src="/images/icons/icons-remove-small.svg" alt="icon-remove-img"></button></form>
                             </div>
                         <% }) %>
                     </div>

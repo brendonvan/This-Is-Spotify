@@ -56,7 +56,6 @@ router.get("/create/:id", async (req, res, next) => {
             release_date: track.album.release_date
         }
 
-        // TODO: IF TRACK IS DOES NOT EXIST CREATE NEW TRACK
         if (true) {
             await db.Tracks.create(newTrack);
         }
@@ -107,7 +106,7 @@ router.put("/liked/:trackId", async (req, res, next) => {
     try {
         let foundTrack = await db.Tracks.findOne({tracks_id: req.params.trackId});
         console.log(foundTrack)
-        let foundPlaylist = await db.Playlist.findById("63166865e829b3d66c872ca8");
+        let foundPlaylist = await db.Playlist.findById("63167b9782029db6ab375237");
 
         // console.log("FOUND TRACK " + foundTrack);
         console.log("FOUND PLAYLIST " + foundPlaylist.tracks);
@@ -116,7 +115,7 @@ router.put("/liked/:trackId", async (req, res, next) => {
         foundPlaylist.tracks.push(foundTrack);
         console.log("FOUND PLAYLIST " + foundPlaylist.tracks);
         // UPDATE PLAYLIST
-        await db.Playlist.findByIdAndUpdate("63166865e829b3d66c872ca8", foundPlaylist);
+        await db.Playlist.findByIdAndUpdate("63167b9782029db6ab375237", foundPlaylist);
 
     } catch (error) {
         console.log (error);
