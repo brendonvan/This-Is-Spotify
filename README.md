@@ -42,8 +42,8 @@ Three key features for our MVP:
 
 ---
 ## User Flow
-
-One improvement to our design that we wish we could have added was User Authentication.
+One improvement to our design is that we made it 1-click faster to add and delete tracks and playlists.
+Another improvement to our design is that we wish we could have added User Authentication.
 Another big improvement we wanted to add was the ability to play tracks. It would have been really fun to be able to imitate Spotify accurately.
 Another implementation that we did not get to was the utilization of Sass. We tried getting Sass to work for a 404 GIF, but ran out of time.
 Unfortunately, we did not have enough time to incorporate everything that we wanted to.
