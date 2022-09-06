@@ -1,13 +1,28 @@
 console.log("Like:loaded")
 
-const img = document.getElementById("track-like");
+const likeButton = document.getElementById("track-like");
+
 let toggle = true;
 
-img.addEventListener('click', () => {
+likeButton.addEventListener('click', async () => {
+    console.log("event listener works")
+    // event.preventDefault();
+    // console.log("eventlistener worked")
+    let path = window.location.pathname.split("");
+    console.log(path)
+    let trackId = path.splice(7).join("");
+    console.log(trackId)
     toggle = !toggle;
     if (toggle) {
-        img.src = "/images/icons/icon-heart.svg";
+        likeButton.src = "/images/icons/icon-heart.svg";
+        // Remove Song from Liked Songs Playlist
+        // grab track id and turn liked to false
+        await fetch(`https://this-is-spotifyy.herokuapp.com/track/disliked/${trackId}`, { method: "PUT" });
+
     } else {
-        img.src = "/images/icons/icon-filled-heart.svg";
-    }
-})
+        likeButton.src = "/images/icons/icon-filled-heart.svg";
+        await fetch(`https://this-is-spotifyy.herokuapp.com/track/liked/${trackId}`, { method: "PUT" });
+        // Add Song to Liked Songs Playlist
+        // grab track id and turn liked to true
+    }   
+});

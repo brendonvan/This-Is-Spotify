@@ -4,10 +4,10 @@ const SpotifyWebApi = require("spotify-web-api-node");
 const express = require("express");
 const axios = require("axios");
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 8080;
 let client_id = process.env.CLIENT_ID;
 let client_secret = process.env.CLIENT_SECRET;
-let redirect_uri = "http://localhost:8080/callback";
+let redirect_uri = "https://this-is-spotifyy.herokuapp.com/callback";
 
 const spotifyApi = new SpotifyWebApi({
     client_id: client_id,
@@ -37,24 +37,9 @@ app.get("/help", (req, res) =>{
 })
 
 // GET SPOTIFY API ACCESS_TOKEN
-app.get("/auth", (req, res) => {
-    res.send({
-        client_id: client_id,
-        client_secret: client_secret,
-        redirect_uri: redirect_uri
-    })
-})
 
-app.get("/callback", async (req, res) => {
-    // getAuth();
-    console.log(getAuth());
-    res.render("home.ejs")
-});
-
+// TAKES IN SEARCH INPUT REQUEST AND SENDS LIST OF TRACKS TO REQUEST
 app.get('/search/input', async (req, res) => {
-    // const authTest = await getAuth()
-    // console.log(searchList());
-    // console.log(typeof searchList());
     console.log('REQ.QUERY.SEARCH: ' + req.query.search);
     let list = [];
     if (req.query.search !== undefined) {
@@ -63,44 +48,53 @@ app.get('/search/input', async (req, res) => {
     }
 })
 
-async function getAuth() {
-    try{
-        //make post request to SPOTIFY API for access token, sending relavent info
-        const token_url = 'https://accounts.spotify.com/api/token';
-        const data = new URLSearchParams({'grant_type':'client_credentials'});
-        const response = await axios.post(token_url, data, {
-        headers: { 
-            "Authorization":"Basic " + new Buffer.from(`${client_id}:${client_secret}`, "utf-8").toString("base64"),
-            "Content-Type": "application/x-www-form-urlencoded"
-        }
-    })
-    // console.log('GOT ACCESS_TOKEN: ' + response);
-    // console.log(response.data.access_token);  
-
-    //return access token
-    return response.data.access_token;
-    
-    } catch(error){
-      console.log(error);
-    }
-}
-
+// SEARCH FOR TRACKS
 async function searchList(search) {
     try {
-        let results = [];
-        const access_token = await getAuth();
-    
         console.log('SEARCHLIST SEARCH: ' + search);
-    
-        // console.log(typeof access_token);
+        // Give Spotify API Access Token
+        const access_token = await getAuth();
         await spotifyApi.setAccessToken(access_token);
-        const data = await spotifyApi.searchTracks(search)
-        // console.log(data.body.tracks.items)
+
+        // Search for argument
+        const data = await spotifyApi.searchTracks(search);
+
+        // Return Array of tracks
         return data.body.tracks.items;
     } catch (err) {
         console.log(err);
     }
 }
+
+// GET ACCESS_TOKEN FROM SPOTIFY
+async function getAuth() {
+    try{
+        // Make post request to SPOTIFY API for access token, sending relavent info
+        const token_url = 'https://accounts.spotify.com/api/token';
+        const data = new URLSearchParams({'grant_type':'client_credentials'}); // URLSearchParams access the windows.location.search Query
+        const response = await axios.post(token_url, data, {
+            headers: { 
+                // Spotify API documentation requires Base 64 encoded string that contains the client ID and client secret key in a specific format.
+                // Buffer provides a way of handling streams of binary data.
+                "Authorization":"Basic " + new Buffer.from(`${client_id}:${client_secret}`, "utf-8").toString("base64"), 
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        })
+        // console.log('GOT ACCESS_TOKEN: ' + response);
+        // console.log(response.data.access_token);  
+
+        // Return Access Token
+        return response.data.access_token;
+    } catch(error){
+      console.log(error);
+    }
+}
+
+// SPOTIFY API CALLBACK
+app.get("/callback", async (req, res) => {
+    console.log(getAuth());
+    res.render("home.ejs")
+});
 
 // ERROR 404 PAGE
 app.get("*", (req, res) => {
