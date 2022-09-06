@@ -20,9 +20,9 @@ router.get("/liked", async (req, res, next) => {
             playlist: await db.Playlist.findById("63167b9782029db6ab375237"),
             playlists: await db.Playlist.find({})
         }
-        res.render("playlist.ejs", context)
+        res.render("playlist.ejs", context);
     } catch (error) {
-        console.log(error)
+        console.log(error);
         req.error = error;
         return next();
     }
@@ -39,9 +39,9 @@ router.post("/playlists", async (req, res, next) => {
             number_of_tracks: 0,
             type: "PLAYLIST"
         })
-        res.redirect(`/playlist/${newPlaylist._id}`)
+        res.redirect(`/playlist/${newPlaylist._id}`);
     } catch (error) {
-        console.log(error)
+        console.log(error);
         req.error = error;
         return next();
     }

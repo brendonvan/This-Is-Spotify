@@ -17,11 +17,10 @@ router.get("/:id", async (req, res, next) => {
     try {
         let context = {};
         let foundTracks = [];
-        let foundPlaylist = await db.Playlist.findById(req.params.id)
+        let foundPlaylist = await db.Playlist.findById(req.params.id);
         foundPlaylist.tracks.forEach( async (trackObjectId) => {
             let track = await db.Tracks.findOne({ _id: trackObjectId});
             foundTracks.push(track);
-            
         })
         
         setTimeout(async () => {
@@ -31,10 +30,10 @@ router.get("/:id", async (req, res, next) => {
                 playlistItems: foundTracks,
                 playlists: await db.Playlist.find({})
             }
-            res.render("playlist.ejs", context)
+            res.render("playlist.ejs", context);
         }, 500)
     } catch (error) {
-        console.log(error)
+        console.log(error);
         req.error = error;
         return next();
     }
@@ -58,10 +57,10 @@ router.get("/:id/edit", async (req, res, next) => {
                 playlistItems: foundTracks,
                 playlists: await db.Playlist.find({})
             }
-            res.render("playlist_edit.ejs", context)
+            res.render("playlist_edit.ejs", context);
         }, 500)
     } catch (error) {
-        console.log(error)
+        console.log(error);
         req.error = error;
         return next();
     }
@@ -73,7 +72,7 @@ router.put("/:id/edit", async (req, res, next) => {
         await db.Playlist.findByIdAndUpdate(req.params.id, { name: req.body.playlistName })
         res.redirect(`/playlist/${req.params.id}`);
     } catch (error) {
-        console.log(error)
+        console.log(error);
         req.error = error;
         return next();
     }
@@ -85,9 +84,6 @@ router.put("/:playlistId/add/:trackId", async (req, res, next) => {
         // FIND TRACK AND PLAYLIST IN MONGODB
         let foundTrack = await db.Tracks.findOne({ tracks_id: req.params.trackId});
         let foundPlaylist = await db.Playlist.findById(req.params.playlistId);
-
-        // console.log("FOUND TRACK " + foundTrack);
-        // console.log("FOUND PLAYLIST " + foundPlaylist);
         
         // PUSH TRACK INTO PLAYLIST ARRAY
         foundPlaylist.tracks.push(foundTrack);
@@ -98,7 +94,7 @@ router.put("/:playlistId/add/:trackId", async (req, res, next) => {
         // REDIRECT TO PLAYLIST
         res.redirect(`/playlist/${req.params.playlistId}`);
     } catch (error) {
-        console.log(error)
+        console.log(error);
         req.error = error;
         return next();
     }
@@ -108,14 +104,13 @@ router.put("/:playlistId/add/:trackId", async (req, res, next) => {
 router.put("/:playlistId/delete/:trackId", async (req, res, next) => {
     try {
         const foundPlaylist = await db.Playlist.findById(req.params.playlistId);
-        const foundTrack = await db.Tracks.findById(req.params.trackId)
-        // console.log(foundPlaylist.tracks)
+        const foundTrack = await db.Tracks.findById(req.params.trackId);
+
         foundPlaylist.tracks.splice(foundPlaylist.tracks.indexOf(req.params.trackId), 1);
-        // console.log(foundPlaylist.tracks)
+
         await db.Playlist.findByIdAndUpdate(req.params.playlistId, {tracks: foundPlaylist.tracks});
 
         return res.redirect(`/playlist/${req.params.playlistId}`);
-
     } catch (error) {
       console.log(error);
       req.error = error;

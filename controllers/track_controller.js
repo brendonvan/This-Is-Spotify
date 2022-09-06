@@ -105,15 +105,11 @@ router.put("/liked/:trackId", async (req, res, next) => {
 
     try {
         let foundTrack = await db.Tracks.findOne({tracks_id: req.params.trackId});
-        console.log(foundTrack)
         let foundPlaylist = await db.Playlist.findById("63167b9782029db6ab375237");
-
-        // console.log("FOUND TRACK " + foundTrack);
-        console.log("FOUND PLAYLIST " + foundPlaylist.tracks);
         
         // PUSH TRACK INTO PLAYLIST ARRAY
         foundPlaylist.tracks.push(foundTrack);
-        console.log("FOUND PLAYLIST " + foundPlaylist.tracks);
+
         // UPDATE PLAYLIST
         await db.Playlist.findByIdAndUpdate("63167b9782029db6ab375237", foundPlaylist);
 
@@ -127,7 +123,6 @@ router.put("/liked/:trackId", async (req, res, next) => {
 // GET SPOTIFY API ACCESS_TOKEN
 // TAKES IN SEARCH INPUT REQUEST AND SENDS LIST OF TRACKS TO REQUEST
 router.get('/search/input', async (req, res) => {
-    console.log('REQ.QUERY.SEARCH: ' + req.query.search);
     let list = [];
     if (req.query.search !== undefined) {
         list = await searchList(req.query.search);
@@ -138,7 +133,6 @@ router.get('/search/input', async (req, res) => {
 // SEARCH FOR TRACKS
 async function searchList(search) {
     try {
-        console.log('SEARCHLIST SEARCH: ' + search);
         // Give Spotify API Access Token
         const access_token = await getAuth();
         await spotifyApi.setAccessToken(access_token);
@@ -167,8 +161,6 @@ async function getAuth() {
                 "Content-Type": "application/x-www-form-urlencoded"
             }
         })
-        // console.log('GOT ACCESS_TOKEN: ' + response);
-        // console.log(response.data.access_token);  
 
         // Return Access Token
         return response.data.access_token;
@@ -179,7 +171,6 @@ async function getAuth() {
 
 // SPOTIFY API CALLBACK
 router.get("/callback", async (req, res) => {
-    console.log(getAuth());
     res.render("home.ejs")
 });
 
