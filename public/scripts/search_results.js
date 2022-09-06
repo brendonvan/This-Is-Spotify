@@ -5,42 +5,39 @@ const searchInput = document.getElementById("search");
 const resultWrapper = document.getElementById("results")
 const searchButton = document.getElementById("search-button")
 
-const searchable = [];
+// EVENT LISTENER ON ANY KEY
+searchInput.addEventListener('keyup', async (e) => {
+    searchResults();
+}) 
 
-
+// EVENT LISTENER FOR "ENTER"
 searchInput.addEventListener('keypress', async (e) => {
     if (event.key === "Enter") {
         let input = searchInput.value
-        console.log(input);
         window.location.href = "https://this-is-spotifyy.herokuapp.com/search/";    
     }
-    
 })
 
-searchInput.addEventListener('keyup', async (e) => {
-    // console.log(searchInput.value);
-    let input = searchInput.value
-    // console.log(input.length)
-    if (input.length) {
-        results = searchable.filter((item) => {
-            return item.toLowerCase().includes(input.toLowerCase());
-        })
-    } else if ( input.length == 0 ) {
-        resultWrapper.innerHTML = ``;
-    }
+//  SEARCH TRACKS
+function searchResults() {
+    // Grab input
+    let input = searchInput.value;
     
+    // Send input data via GET request search query, to get back list of tracks
     setTimeout( async () => {
-        console.log("Searching")
+        // GET DATA
         const response = await fetch(`https://this-is-spotifyy.herokuapp.com/search/input?search=${input}`, { method: "GET" });
         const data = await response.json();
+        // RENDER DATA TO PAGE
         renderResults(data.list);
     }, 500)
-}) 
+}
 
+// SHOWS RESULTS ON HTML PAGE
 function renderResults(results) {
-    // console.log(results);
+    // FOR EACH ITEM ADD NEW HTML ELEMENT
     let content = results.map((item, i) => {
-        console.log("Items: " + item);
+        // console.log("Items: " + item);
         return `
             <a href="/track/create/${item.id}">
                 <div class="item-container">
@@ -57,18 +54,4 @@ function renderResults(results) {
     
     resultWrapper.innerHTML = `${content}`;
 }
-
-async function requestAuthorization() {
-    console.log("Authorization Clicked")
-    const response = await fetch(`https://this-is-spotifyy.herokuapp.com/auth`, { method: "GET" });
-    const data = await response.json();
-
-    let url = "https://accounts.spotify.com/authorize";
-    url += "?client_id=" + data.client_id;
-    url += "&response_type=code";
-    url += "&redirect_uri=" + encodeURI(data.redirect_uri);
-    url += "&show_dialog=true";
-    window.location.href = url;
-}
-
 

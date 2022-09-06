@@ -18,7 +18,8 @@ const playlistSchema = new mongoose.Schema({
         required: [true, "playlist image cannot be empty"]
     },
     created_date: {
-        type: { type: Date, default: Date.now },
+        type: Date,
+        default: Date.now
     },
     total_duration: {
         type: String,
