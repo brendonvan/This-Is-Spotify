@@ -32,6 +32,10 @@ const tracksSchema = new mongoose.Schema({
     },
     release_date: {
         type: String
+    },
+    liked: {
+        type: Boolean,
+        default: false
     }
 },
 {

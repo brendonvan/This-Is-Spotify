@@ -99,6 +99,30 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 
+// PUT ROUTE FOR LIKED TRACKS
+router.put("/liked/:trackId", async (req, res, next) => {
+
+    try {
+        let foundTrack = await db.Tracks.findOne({tracks_id: req.params.trackId});
+        console.log(foundTrack)
+        let foundPlaylist = await db.Playlist.findById("63166865e829b3d66c872ca8");
+
+        // console.log("FOUND TRACK " + foundTrack);
+        console.log("FOUND PLAYLIST " + foundPlaylist.tracks);
+        
+        // PUSH TRACK INTO PLAYLIST ARRAY
+        foundPlaylist.tracks.push(foundTrack);
+        console.log("FOUND PLAYLIST " + foundPlaylist.tracks);
+        // UPDATE PLAYLIST
+        await db.Playlist.findByIdAndUpdate("63166865e829b3d66c872ca8", foundPlaylist);
+
+    } catch (error) {
+        console.log (error);
+        req.error = error;
+        return next();
+    }
+});
+
 // GET SPOTIFY API ACCESS_TOKEN
 // TAKES IN SEARCH INPUT REQUEST AND SENDS LIST OF TRACKS TO REQUEST
 router.get('/search/input', async (req, res) => {
@@ -163,6 +187,8 @@ function millisToMinutesAndSeconds(millis) {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
-}
+};
+
+
 
 module.exports = router;
