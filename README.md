@@ -8,7 +8,7 @@ This-Is-Streamify.
 ## Getting Started
 
 1. https://github.com/brendonvan/This-Is-Spotify
-2. https://this-is-spotifyy.herokuapp.com/search
+2. https://this-is-spotifyy.herokuapp.com
 
 ---
  ## User Stories
@@ -16,7 +16,7 @@ This-Is-Streamify.
 User navigates to the site and interacts by searching for tracks to listen to, hitting the Like button to add them to a Liked tracks playlist, and create, update, and delete playlists. Users will enjoy a great interface as he/she can search for any track thanks to the Spotify API.
 
 Three key features for our MVP:
-1. Search for any track due to Spotify API
+1. Search for any track using Spotify's API
 2. Creating and storing playlists
 3. Ability to Like tracks and add them to a Liked playlist
 
@@ -44,7 +44,7 @@ Three key features for our MVP:
 ## User Flow
 
 One improvement to our design that we wish we could have added was User Authentication.
-Another big improvement we wanted to add was the ability to actually play tracks. It would have been really fun to be able to actually imitate Spotify accurately.
+Another big improvement we wanted to add was the ability to play tracks. It would have been really fun to be able to imitate Spotify accurately.
 Another implementation that we did not get to was the utilization of Sass. We tried getting Sass to work for a 404 GIF, but ran out of time.
 Unfortunately, we did not have enough time to incorporate everything that we wanted to.
 
@@ -83,6 +83,6 @@ Jack: I enjoyed coding along with Brendon, especially during the implementation 
 ---
 ## Contributors
 
-1. Brendon Van[Github Profile](https://github.com/brendonvan)
-2. Kevin Ng[Github Profile](https://github.com/kevinszn23)
-3. Jack Wikum[Github Profile](https://github.com/jackwyattw)
+1. Brendon Van [Github Profile](https://github.com/brendonvan)
+2. Kevin Ng [Github Profile](https://github.com/kevinszn23)
+3. Jack Wikum [Github Profile](https://github.com/jackwyattw)
