@@ -22,8 +22,8 @@ router.get("/", async (req, res) => {
         console.log(error)
         req.error = error;
         return next();
-    }
-    
+    } 
 })
+
 
 module.exports = router;
