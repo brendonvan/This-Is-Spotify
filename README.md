@@ -8,7 +8,7 @@ This-Is-Streamify.
 ## Getting Started
 
 1. https://github.com/brendonvan/This-Is-Spotify
-2. https://this-is-spotifyy.herokuapp.com
+2. https://this-is-streamify.herokuapp.com/
 
 ---
  ## User Stories
