@@ -78,11 +78,8 @@ Brendon: I enjoyed the challenge of implementing the Spotify API, and everything
 
 Kevin: I enjoyed getting a better understanding of routes and working with my teammates, which has been enjoyable and satisfying. Working in a group is very different from tackling a solo project, so it was great to experience a different dynamic.
 
-Jack: I enjoyed coding along with Brendon, especially during the implementation of the Spotify API. I also enjoyed working on the front-end side of things like working on the CSS for the 404 page
-
 ---
 ## Contributors
 
 1. Brendon Van [Github Profile](https://github.com/brendonvan)
 2. Kevin Ng [Github Profile](https://github.com/kevinszn23)
-3. Jack Wikum [Github Profile](https://github.com/jackwyattw)
