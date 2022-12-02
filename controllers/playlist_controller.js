@@ -12,7 +12,7 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
 // ROUTERS
-
+// SHOW PAGE
 router.get("/:id", async (req, res, next) => {
     try {
         let context = {};

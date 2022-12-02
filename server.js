@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 let client_id = process.env.CLIENT_ID;
 let client_secret = process.env.CLIENT_SECRET;
-let redirect_uri = "https://this-is-spotifyy.herokuapp.com/callback";
+let redirect_uri = "https://pokedex-demo.onrender.com/callback";
 
 const spotifyApi = new SpotifyWebApi({
     client_id: client_id,
@@ -58,7 +58,7 @@ async function searchList(search) {
 
         // Search for argument
         const data = await spotifyApi.searchTracks(search);
-
+        
         // Return Array of tracks
         return data.body.tracks.items;
     } catch (err) {

@@ -14,7 +14,7 @@ searchInput.addEventListener('keyup', async (e) => {
 searchInput.addEventListener('keypress', async (e) => {
     if (event.key === "Enter") {
         let input = searchInput.value
-        window.location.href = "https://this-is-spotifyy.herokuapp.com/search/";    
+        window.location.href = "https://pokedex-demo.onrender.com:8080/search/";    
     }
 })
 
@@ -26,7 +26,7 @@ function searchResults() {
     // Send input data via GET request search query, to get back list of tracks
     setTimeout( async () => {
         // GET DATA
-        const response = await fetch(`https://this-is-spotifyy.herokuapp.com/search/input?search=${input}`, { method: "GET" });
+        const response = await fetch(`https://pokedex-demo.onrender.com:8080/search/input?search=${input}`, { method: "GET" });
         const data = await response.json();
         // RENDER DATA TO PAGE
         renderResults(data.list);
