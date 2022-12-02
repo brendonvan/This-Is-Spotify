@@ -21,7 +21,7 @@ likeButton.addEventListener('click', async () => {
 
     } else {
         likeButton.src = "/images/icons/icon-filled-heart.svg";
-        await fetch(`https://this-is-streamify.onrender.com:8080/track/liked/${trackId}`, { method: "PUT" });
+        await fetch(`https://this-is-streamify.onrender.com/track/liked/${trackId}`, { method: "PUT" });
         // Add Song to Liked Songs Playlist
         // grab track id and turn liked to true
     }   
