@@ -8,7 +8,7 @@ const playlistOptions = document.getElementById("playlistOptions");
 addButton.addEventListener('click', async () => {
     console.log("Event listener Clicked")
     // FETCH PLAYLIST DATA
-    const response = await fetch(`https://this-is-streamify.onrender.com/track/playlists`, { method: "GET" });
+    const response = await fetch(`https://streamify.fly.dev/track/playlists`, { method: "GET" });
     const data = await response.json();
     
     console.log(data);
