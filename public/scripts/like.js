@@ -17,7 +17,7 @@ likeButton.addEventListener('click', async () => {
         likeButton.src = "/images/icons/icon-heart.svg";
         // Remove Song from Liked Songs Playlist
         // grab track id and turn liked to false
-        await fetch(`localhost:8080/track/disliked/${trackId}`, { method: "PUT" });
+        await fetch(`https://streamify.fly.dev/track/disliked/${trackId}`, { method: "PUT" });
 
     } else {
         likeButton.src = "/images/icons/icon-filled-heart.svg";
