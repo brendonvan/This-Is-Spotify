@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 let client_id = process.env.CLIENT_ID;
 let client_secret = process.env.CLIENT_SECRET;
-let redirect_uri = "https://this-is-streamify.onrender.com/callback";
+let redirect_uri = "https://streamify.fly.dev/";
 
 const spotifyApi = new SpotifyWebApi({
     client_id: client_id,
